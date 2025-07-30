@@ -1,1 +1,685 @@
-<a href="Project Integration /Project Objectives and Their Relation to Organisational Strategies and Goals">View Project Objectives</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Objectives and Their Relation to Organisational Strategies and Goals</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Styles for Moodle Book */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .book-container {
+            display: flex;
+            margin-top: 2rem;
+        }
+        .toc-container {
+            width: 25%;
+            padding-right: 20px;
+            border-right: 1px solid #dee2e6;
+            align-self: flex-start; /* Keep TOC from stretching */
+        }
+        .content-container {
+            width: 75%;
+            padding-left: 20px;
+        }
+        .toc-container .nav-link {
+            color: #495057;
+            padding: 0.5rem 1rem;
+            border-left: 3px solid transparent;
+        }
+        .toc-container .nav-link.active,
+        .toc-container .nav-link:hover {
+            color: #0d6efd;
+            background-color: #e9ecef;
+            border-left-color: #0d6efd;
+        }
+        .toc-container .nav-link.sub-chapter {
+            padding-left: 2rem;
+        }
+        .chapter-content {
+            display: none;
+        }
+        .chapter-content.active {
+            display: block;
+        }
+        h1, h2, h3 {
+            font-weight: 700;
+            color: #343a40;
+        }
+        .card {
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Custom Styles for Drag and Drop Activity */
+        .draggable-item {
+            cursor: grab;
+            user-select: none;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .draggable-item:active {
+            cursor: grabbing;
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .drop-zone {
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .drop-zone.drag-over {
+            background-color: #cfe2ff; /* Bootstrap's primary-subtle */
+            border-color: #0d6efd; /* Bootstrap's primary */
+        }
+        .drop-zone.correct {
+            background-color: #d1e7dd; /* Bootstrap's success-subtle */
+            border-color: #198754; /* Bootstrap's success */
+        }
+        .drop-zone.incorrect {
+            animation: shake 0.5s;
+            border-color: #dc3545; /* Bootstrap's danger */
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .feedback-message {
+            transition: opacity 0.5s ease-in-out;
+        }
+        .related-videos-link {
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <header class="py-4 bg-white shadow-sm">
+            <div class="container">
+                <h1>Project Objectives and Organisational Strategies</h1>
+            </div>
+        </header>
+
+        <div class="container book-container">
+            <!-- Table of Contents -->
+            <nav class="toc-container">
+                <h2 class="h5 mb-3">Contents</h2>
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-c1-tab" data-bs-toggle="pill" href="#v-pills-c1" role="tab" aria-controls="v-pills-c1" aria-selected="true">1. Relation of Project Objectives to Organisational Strategies</a>
+                    <a class="nav-link sub-chapter" data-bs-toggle="pill" href="#v-pills-c1-1" role="tab" aria-controls="v-pills-c1-1">- 1.1. Justification</a>
+                    <a class="nav-link sub-chapter" data-bs-toggle="pill" href="#v-pills-c1-2" role="tab" aria-controls="v-pills-c1-2">- 1.2. Relation to strategic goals</a>
+                    <a class="nav-link sub-chapter" data-bs-toggle="pill" href="#v-pills-c1-3" role="tab" aria-controls="v-pills-c1-3">- 1.3. Role of niche projects</a>
+
+                    <a class="nav-link" id="v-pills-c2-tab" data-bs-toggle="pill" href="#v-pills-c2" role="tab" aria-controls="v-pills-c2" aria-selected="false">2. Broader Organisational Strategies and Goals</a>
+                    <a class="nav-link sub-chapter" data-bs-toggle="pill" href="#v-pills-c2-1" role="tab" aria-controls="v-pills-c2-1">- 2.1. Market focus</a>
+                    <a class="nav-link sub-chapter" data-bs-toggle="pill" href="#v-pills-c2-2" role="tab" aria-controls="v-pills-c2-2">- 2.2. Organisational mission</a>
+                    <a class="nav-link sub-chapter" data-bs-toggle="pill" href="#v-pills-c2-3" role="tab" aria-controls="v-pills-c2-3">- 2.3. Strategy plans</a>
+                    <a class="nav-link sub-chapter" data-bs-toggle="pill" href="#v-pills-c2-4" role="tab" aria-controls="v-pills-c2-4">- 2.4. Values and ethics</a>
+
+                    <a class="nav-link" id="v-pills-c3-tab" data-bs-toggle="pill" href="#v-pills-c3" role="tab" aria-controls="v-pills-c3" aria-selected="false">3. Relationship between Project and Broader Strategies</a>
+                     <a class="nav-link sub-chapter" data-bs-toggle="pill" href="#v-pills-c3-1" role="tab" aria-controls="v-pills-c3-1">- 3.1. Conception of the project</a>
+                     <a class="nav-link sub-chapter" data-bs-toggle="pill" href="#v-pills-c3-2" role="tab" aria-controls="v-pills-c3-2">- 3.2. Governance by values</a>
+                     <a class="nav-link sub-chapter" data-bs-toggle="pill" href="#v-pills-c3-3" role="tab" aria-controls="v-pills-c3-3">- 3.3. Team understanding</a>
+                     <a class="nav-link sub-chapter" data-bs-toggle="pill" href="#v-pills-c3-4" role="tab" aria-controls="v-pills-c3-4">- 3.4. Stakeholder agreement</a>
+                     <a class="nav-link sub-chapter" data-bs-toggle="pill" href="#v-pills-c3-5" role="tab" aria-controls="v-pills-c3-5">- 3.5. Initiating change</a>
+                </div>
+            </nav>
+
+            <!-- Content -->
+            <div class="content-container">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <!-- Chapters Content -->
+                    <div class="tab-pane fade show active chapter-content mb-4" id="v-pills-c1" role="tabpanel" aria-labelledby="v-pills-c1-tab"> <div class="card"><div class="card-body"><h2 class="card-title">1. Relation of Project Objectives to Organisational Strategies</h2><p class="card-text">This chapter explores the direct links between a project's specific goals and the overarching strategies of the organization.</p></div></div></div>
+                    <div class="tab-pane fade chapter-content mb-4" id="v-pills-c1-1" role="tabpanel"> 
+                        <h3>1.1. Justification of the project</h3> 
+                        <p>When we talk about the justification of a project, we're not discussing it in isolation. Rather, we're situating it within the larger strategic vision of the organisation. Every well-founded project exists for a reason—namely, to advance one or more organisational goals. This alignment is what gives a project its legitimacy.</p>
+                        
+                        <div class="alert alert-info">
+                            <h5>💡 Key Takeaway</h5>
+                            <p class="mb-0"><strong>Project justification = Strategic alignment + Business value</strong></p>
+                        </div>
+                        
+                        <p>Consider this: if a company's strategic aim is to grow its market presence, then a project designed to launch a new product line becomes not only relevant, but necessary. Its outcomes are no longer just internal deliverables—they become stepping stones toward strategic success. In short, the justification for the project lies in how well it supports the broader objectives of the business.</p>
+                        
+                        <div class="card border-primary mb-3">
+                            <div class="card-header bg-primary text-white">
+                                <h6 class="mb-0">🌍 Real-World Example: Tesla's Gigafactory</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>Tesla's Gigafactory project wasn't just about building a factory—it was strategically justified to achieve Tesla's mission of accelerating the world's transition to sustainable energy. This project directly supported Tesla's strategic goals of scaling production and reducing costs.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-warning">
+                            <h6>🤔 Think About It</h6>
+                            <p class="mb-0">Can you identify a project in your experience that was well-justified? What made it strategically aligned?</p>
+                        </div>
+                        
+                        <a href="https://www.youtube.com/results?search_query=Project+Justification" target="_blank" class="related-videos-link">Related Videos</a>
+                    </div>
+                    <div class="tab-pane fade chapter-content mb-4" id="v-pills-c1-2" role="tabpanel"> 
+                        <h3>1.2. Relation to strategic goals</h3> 
+                        <p>Every project should connect to the bigger picture—that is, to at least one of the organisation's strategic goals. Even if a project is small or highly focused, it shouldn't be disconnected from the broader mission. This connection ensures the project adds value beyond its immediate outputs.</p>
+                        
+                        <div class="alert alert-success">
+                            <h5>🎯 What This Means</h5>
+                            <p class="mb-0">Think of strategic goals as your organization's "North Star" - every project should help you move toward that direction.</p>
+                        </div>
+                        
+                        <p>Take this example: if improving customer satisfaction is a key strategic goal, then launching a project to upgrade the customer support system makes perfect sense. Objectives like speeding up response times or boosting issue resolution rates clearly support that wider aim. When project goals are linked like this, the work becomes part of a purposeful strategy—not just a standalone task.</p>
+                        
+                        <div class="card border-success mb-3">
+                            <div class="card-header bg-success text-white">
+                                <h6 class="mb-0">📊 Global Example: Netflix's Content Strategy</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>Netflix's strategic goal is global content dominance. Every project they undertake—from developing local content in different countries to improving their recommendation algorithm—directly supports this strategic goal. This alignment has made them a global streaming leader.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <h6>💭 Discussion Point</h6>
+                            <p class="mb-0">How do you think cultural differences might affect how strategic goals are interpreted in international projects?</p>
+                        </div>
+                        
+                        <a href="https://www.youtube.com/results?search_query=Project+objectives+and+strategic+goals" target="_blank" class="related-videos-link">Related Videos</a>
+                    </div>
+                    <div class="tab-pane fade chapter-content mb-4" id="v-pills-c1-3" role="tabpanel"> 
+                        <h3>1.3. Role of niche projects</h3> 
+                        <p>Niche projects, though smaller in scale, play a significant role in an organisation's strategic plan. While they may not relate to all of the strategic goals, they must align with at least one. These projects often target specific areas of the business or market, providing unique value or addressing specific challenges. Their success can lead to significant advancements in the organisation's strategic goals.</p>
+                        
+                        <div class="alert alert-warning">
+                            <h5>🔍 Why Niche Projects Matter</h5>
+                            <p class="mb-0">Small projects can have big strategic impact - they often test new ideas or serve specific customer segments.</p>
+                        </div>
+                        
+                        <p>For instance, a niche project might focus on developing a specialized product for a specific customer segment. While this project may not directly contribute to all of the organisation's strategic goals, it aligns with the goal of expanding into new market segments, thereby playing a crucial role in the organisation's strategic plan.</p>
+                        
+                        <div class="card border-warning mb-3">
+                            <div class="card-header bg-warning text-dark">
+                                <h6 class="mb-0">🌏 International Example: Spotify's Local Playlists</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>Spotify's niche projects include creating region-specific playlists and features. While these are small projects, they directly support Spotify's strategic goal of global market penetration by catering to local music preferences and cultural tastes.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-secondary">
+                            <h6>📝 Apply This</h6>
+                            <p class="mb-0">Think of a niche project you've worked on. How did it contribute to broader organizational goals?</p>
+                        </div>
+                        
+                        <a href="https://www.youtube.com/results?search_query=Role+of+niche+projects+in+business+strategy" target="_blank" class="related-videos-link">Related Videos</a>
+                    </div>
+                    <div class="tab-pane fade chapter-content mb-4" id="v-pills-c2" role="tabpanel" aria-labelledby="v-pills-c2-tab"> <div class="card"><div class="card-body"><h2 class="card-title">2. Broader Organisational Strategies and Goals</h2><p class="card-text">This section delves into the high-level strategies and goals that guide the organization as a whole.</p></div></div></div>
+                    <div class="tab-pane fade chapter-content mb-4" id="v-pills-c2-1" role="tabpanel">
+                        <h3>2.1. Market focus</h3>
+                        <p>Let's talk about market focus—this is basically the area of the market that a company targets. It could be a niche, a demographic, or even a value-based category like sustainability. When planning projects, it's crucial that they line up with this focus. Why? Because projects are one of the main ways organisations act on their market ambitions.</p>
+                        
+                        <div class="alert alert-primary">
+                            <h5>🎯 Market Focus Explained</h5>
+                            <p class="mb-0">Market focus is like choosing your "playing field" - where does your organization want to compete and win?</p>
+                        </div>
+                        
+                        <p>Say a company is focused on sustainability. A project to launch a new line of eco-friendly products fits perfectly. It's not just about making something new—it's about reinforcing the company's identity and pushing into a market space that aligns with its strategy. That's how market focus and project planning go hand in hand.</p>
+                        
+                        <div class="card border-info mb-3">
+                            <div class="card-header bg-info text-white">
+                                <h6 class="mb-0">🌱 Global Example: Patagonia's Sustainability Focus</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>Patagonia's market focus is environmentally conscious consumers. Every project they undertake—from using recycled materials to their "Don't Buy This Jacket" campaign—reinforces this market focus and strengthens their position in the sustainable fashion market.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-warning">
+                            <h6>🌍 Cultural Consideration</h6>
+                            <p class="mb-0">How might market focus differ between countries? Consider how McDonald's adapts its menu for different markets while maintaining its core brand identity.</p>
+                        </div>
+                        
+                        <a href="https://www.youtube.com/results?search_query=Market+focus+strategy" target="_blank" class="related-videos-link">Related Videos </a>
+                    </div>
+                    <div class="tab-pane fade chapter-content mb-4" id="v-pills-c2-2" role="tabpanel">
+                        <h3>2.2. Organisational mission statement</h3>
+                        <p>The organisational mission statement is a broad definition of the purpose of the organisation and its overarching vision and/or goals. It is designed to unite and motivate stakeholders towards a common goal and usually sets out the company's values and beliefs. A project should align with this mission statement, reflecting the organisation's target market, geographical limits, growth intentions, philosophy, and desired image.</p>
+                        
+                        <div class="alert alert-success">
+                            <h5>📜 Mission Statement Purpose</h5>
+                            <p class="mb-0">A mission statement answers: "Why do we exist?" and "What do we want to achieve?"</p>
+                        </div>
+                        
+                        <p>For example, if an organisation's mission statement emphasizes innovation and customer satisfaction, a project might be initiated to develop a new, user-friendly product. This project aligns with the mission statement by contributing to the organisation's innovative efforts and aiming to enhance customer satisfaction.</p>
+                        
+                        <div class="card border-success mb-3">
+                            <div class="card-header bg-success text-white">
+                                <h6 class="mb-0">🏢 International Example: IKEA's Mission</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>IKEA's mission is "to create a better everyday life for many people." This simple statement guides all their projects—from affordable furniture design to sustainable sourcing. Their projects always aim to make quality living accessible to the masses.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <h6>💭 Reflection Question</h6>
+                            <p class="mb-0">How do you think a mission statement helps international teams stay aligned across different cultures and markets?</p>
+                        </div>
+                        
+                        <a href="https://www.youtube.com/results?search_query=Organisational+mission+statement" target="_blank" class="related-videos-link">Related Videos </a>
+                    </div>
+                    <div class="tab-pane fade chapter-content mb-4" id="v-pills-c2-3" role="tabpanel">
+                        <h3>2.3. Strategy plans</h3>
+                        <p>Think of strategy plans as the architectural blueprint of an organisation's future—detailing not just the vision, but the structural elements required to realise it. Projects are like construction phases: each one contributes a key component to the overall structure. For this reason, project alignment with strategic plans is not optional—it is essential.</p>
+                        
+                        <div class="alert alert-warning">
+                            <h5>🏗️ Strategy Plans as Blueprints</h5>
+                            <p class="mb-0">Strategy plans are your organization's roadmap to success - they show the path from where you are to where you want to be.</p>
+                        </div>
+                        
+                        <p>Take the case of an organisation aiming to grow its digital presence. A project focused on redesigning the website becomes a foundational phase in that build. And it's not just about creating the platform—it's about delivering measurable impacts, such as higher traffic or improved user engagement, that demonstrate progress against strategic benchmarks. In project management, especially on the international stage, this kind of alignment is a marker of both relevance and accountability.</p>
+                        
+                        <div class="card border-warning mb-3">
+                            <div class="card-header bg-warning text-dark">
+                                <h6 class="mb-0">📱 Digital Example: Apple's Strategic Evolution</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>Apple's strategic plan evolved from computers to mobile devices to services. Each project—iPhone development, App Store creation, Apple Music—was a building block in their strategic transformation from hardware company to ecosystem provider.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-secondary">
+                            <h6>📊 Key Insight</h6>
+                            <p class="mb-0">Strategic plans must be flexible enough to adapt to changing market conditions while providing clear direction for project decisions.</p>
+                        </div>
+                        
+                        <a href="https://www.youtube.com/results?search_query=Business+strategy+plans" target="_blank" class="related-videos-link">Related Videos </a>
+                    </div>
+                    <div class="tab-pane fade chapter-content mb-4" id="v-pills-c2-4" role="tabpanel">
+                        <h3>2.4. Values and ethics</h3>
+                        <p>The values and ethics of an organisation underpin the way it conducts its business, the expectations of behaviour of employees and other representatives, and its mission statement and strategic goals, in non-monetary terms. A project should reflect these values and ethics, ensuring that its execution aligns with the organisation's commitment to certain principles, such as environmental sustainability, community engagement, diversity, charity work, and global issues.</p>
+                        
+                        <div class="alert alert-danger">
+                            <h5>⚖️ Values as Decision Framework</h5>
+                            <p class="mb-0">Values and ethics are your organization's moral compass - they guide every decision, including project choices.</p>
+                        </div>
+                        
+                        <p>For example, if an organisation values environmental sustainability, a project might be initiated to reduce the organisation's carbon footprint. This could involve implementing energy-efficient practices or sourcing sustainable materials. The project's objectives and execution would then reflect the organisation's commitment to environmental sustainability, aligning with its values and ethics.</p>
+                        
+                        <div class="card border-danger mb-3">
+                            <div class="card-header bg-danger text-white">
+                                <h6 class="mb-0">🌍 Global Example: Unilever's Sustainable Living Plan</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>Unilever's values include sustainability and social responsibility. Their "Sustainable Living Plan" project wasn't just about reducing environmental impact—it was about living their values through every business decision, from sourcing to packaging to community engagement.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <h6>🤝 Cultural Sensitivity</h6>
+                            <p class="mb-0">How might organizational values need to be adapted or interpreted differently across different cultural contexts?</p>
+                        </div>
+                        
+                        <a href="https://www.youtube.com/results?search_query=Organisational+values+and+ethics" target="_blank" class="related-videos-link">Related Videos </a>
+                    </div>
+                    <div class="tab-pane fade chapter-content mb-4" id="v-pills-c3" role="tabpanel" aria-labelledby="v-pills-c3-tab"> <div class="card"><div class="card-body"><h2 class="card-title">3. Relationship between the Project and Broader Organisational Strategies and Goals</h2><p class="card-text">This final chapter examines the dynamic relationship, including how projects are conceived from and can even influence organizational strategy.</p></div></div></div>
+                    <div class="tab-pane fade chapter-content mb-4" id="v-pills-c3-1" role="tabpanel">
+                        <h3>3.1. Conception of the project</h3>
+                        <p>The conception of a project is typically a result of the organisation's strategic plan and mission statement. The project should align with the organisation's market focus and be governed by its values and ethics. For instance, if the organisation is committed to environmentally sustainable practices, a project may be constrained to use only locally sourced resources. This alignment ensures that the project is not just an isolated endeavor but a strategic initiative that supports the organisation's broader goals.</p>
+                        
+                        <div class="alert alert-primary">
+                            <h5>💡 Project Conception Process</h5>
+                            <p class="mb-0">Project conception is like planting a seed - it needs the right strategic soil to grow successfully.</p>
+                        </div>
+                        
+                        <div class="card border-primary mb-3">
+                            <div class="card-header bg-primary text-white">
+                                <h6 class="mb-0">🚀 Innovation Example: SpaceX's Starlink Project</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>SpaceX's Starlink project was conceived from their strategic goal of making space accessible and providing global internet coverage. This project wasn't just about launching satellites—it was about realizing their mission of enabling life on Mars by funding space exploration through commercial ventures.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-warning">
+                            <h6>🌍 International Consideration</h6>
+                            <p class="mb-0">How might project conception differ when working with international teams or in different cultural contexts?</p>
+                        </div>
+                        
+                        <a href="https://www.youtube.com/results?search_query=Project+conception+and+initiation" target="_blank" class="related-videos-link">Related Videos</a>
+                    </div>
+                    <div class="tab-pane fade chapter-content mb-4" id="v-pills-c3-2" role="tabpanel">
+                        <h3>3.2. Governance by organisational values and ethics</h3>
+                        <p>The governance of a project is heavily influenced by the organisation's values and ethics. These principles guide the decision-making process, the selection of resources, and the overall conduct of the project. For instance, if an organisation is committed to improving environmentally sustainable working practices, a constraint placed on the project may be that all resources must be locally sourced.</p>
+                        
+                        <div class="alert alert-success">
+                            <h5>⚖️ Values-Driven Governance</h5>
+                            <p class="mb-0">Values and ethics act as guardrails for project decisions - they ensure projects stay true to organizational principles.</p>
+                        </div>
+                        
+                        <div class="card border-success mb-3">
+                            <div class="card-header bg-success text-white">
+                                <h6 class="mb-0">🌱 Sustainability Example: Interface's Mission Zero</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>Interface, a carpet manufacturer, committed to Mission Zero - eliminating their environmental impact by 2020. Every project they undertook had to align with this value, from sourcing recycled materials to developing carbon-neutral manufacturing processes.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <h6>🤝 Cultural Values</h6>
+                            <p class="mb-0">How might organizational values be interpreted differently across different cultural contexts in international projects?</p>
+                        </div>
+                        
+                        <a href="https://www.youtube.com/results?search_query=Project+governance+and+ethics" target="_blank" class="related-videos-link">Related Videos </a>
+                    </div>
+                    <div class="tab-pane fade chapter-content mb-4" id="v-pills-c3-3" role="tabpanel">
+                        <h3>3.3. Understanding of organisational strategies by the project team</h3>
+                        <p>The project team, especially if external to the organisation, must understand the broader organisational strategies and goals in relation to the project. This understanding ensures that the team keeps these strategies and goals at the forefront of their minds throughout the life of the project, aligning their actions and decisions with the organisation's strategic direction.</p>
+                        
+                        <div class="alert alert-warning">
+                            <h5>👥 Team Alignment</h5>
+                            <p class="mb-0">Every team member needs to understand the "why" behind the project - not just the "what" and "how".</p>
+                        </div>
+                        
+                        <div class="card border-warning mb-3">
+                            <div class="card-header bg-warning text-dark">
+                                <h6 class="mb-0">🌍 Global Team Example: Microsoft's Cloud Strategy</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>Microsoft's shift to cloud computing required every team member to understand their strategic transformation. From developers to sales teams, everyone needed to align their work with the "mobile-first, cloud-first" strategy, ensuring consistent execution across global teams.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-secondary">
+                            <h6>📚 Communication Challenge</h6>
+                            <p class="mb-0">How can project managers ensure that international team members with different cultural backgrounds understand organizational strategy in the same way?</p>
+                        </div>
+                        
+                        <a href="https://www.youtube.com/results?search_query=Aligning+project+teams+with+organisational+strategy" target="_blank" class="related-videos-link">Related Videos</a>
+                    </div>
+                    <div class="tab-pane fade chapter-content mb-4" id="v-pills-c3-4" role="tabpanel">
+                        <h3>3.4. Stakeholder understanding and agreement</h3>
+                        <p>Stakeholders, including investors and sponsors, should understand and agree to the organisational strategies, mission statement, and values and ethics. Any discrepancies over these issues at the beginning of the project could lead to significant problems later on. If stakeholders do not buy into the overall aims of the organisation, their inclusion within the project should be seriously questioned.</p>
+                        
+                        <div class="alert alert-danger">
+                            <h5>🤝 Stakeholder Alignment</h5>
+                            <p class="mb-0">Stakeholder buy-in is crucial - misaligned stakeholders can derail even the best-planned projects.</p>
+                        </div>
+                        
+                        <div class="card border-danger mb-3">
+                            <div class="card-header bg-danger text-white">
+                                <h6 class="mb-0">💼 Investment Example: Tesla's Gigafactory Stakeholders</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>Tesla's Gigafactory project required alignment between multiple stakeholders: investors, government officials, suppliers, and local communities. Each group needed to understand and support Tesla's mission of sustainable energy, ensuring the project could proceed successfully.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <h6>🌍 International Stakeholders</h6>
+                            <p class="mb-0">How might stakeholder expectations differ across different countries and cultures in international projects?</p>
+                        </div>
+                        
+                        <a href="https://www.youtube.com/results?search_query=Stakeholder+alignment+with+organisational+strategy" target="_blank" class="related-videos-link">Related Videos</a>
+                    </div>
+                    <div class="tab-pane fade chapter-content mb-4" id="v-pills-c3-5" role="tabpanel">
+                        <h3>3.5. Initiation of change in organisational strategies through the project</h3>
+                        <p>A project can also be initiated to bring about a change in organisational strategies and goals. For example, a project might be started to expand into a different market area or to introduce a new form of corporate social responsibility. In such cases, the strategic plan and mission statement must be changed to reflect this in order to keep the project in line with the organisational goals.</p>
+                        
+                        <div class="alert alert-primary">
+                            <h5>🔄 Strategic Evolution</h5>
+                            <p class="mb-0">Projects can be catalysts for strategic change - they can push organizations to evolve and adapt.</p>
+                        </div>
+                        
+                        <div class="card border-primary mb-3">
+                            <div class="card-header bg-primary text-white">
+                                <h6 class="mb-0">📱 Digital Transformation: Netflix's Streaming Revolution</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>Netflix's streaming project didn't just change their business model—it revolutionized the entire entertainment industry. This project forced Netflix to completely transform their strategic plan from DVD rental to global content streaming, fundamentally changing their organizational strategy.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-success">
+                            <h6>🎯 Key Insight</h6>
+                            <p class="mb-0">The most successful projects often don't just support existing strategy—they help create new strategic directions.</p>
+                        </div>
+                        
+                        <div class="alert alert-warning">
+                            <h6>💭 Final Reflection</h6>
+                            <p class="mb-0">Think about a project you've worked on. Did it support existing strategy, or did it help create new strategic directions?</p>
+                        </div>
+                        
+                        <a href="https://www.youtube.com/results?search_query=Projects+as+a+driver+of+strategic+change" target="_blank" class="related-videos-link">Related Videos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drag and Drop Activity Section -->
+        <div class="container my-5">
+            <hr class="my-5">
+            <header class="text-center mb-5">
+                <h1 class="fw-bold">Project Strategy Matching Activity</h1>
+                <p class="mt-2 fs-5 text-muted">Match the organisational concepts to their correct descriptions.</p>
+            </header>
+
+            <div class="bg-white p-4 p-md-5 rounded-3 shadow-lg">
+                <div class="alert alert-info text-center">
+                    <strong>Instructions:</strong> Drag a concept from the left and drop it onto its matching description on the right.
+                </div>
+
+                <div class="row g-5 mt-4">
+                    <!-- Draggable Items Column -->
+                    <div id="concepts-container" class="col-lg-6 d-flex flex-column gap-3">
+                        <h2 class="h4 fw-semibold text-center text-secondary mb-2">Concepts</h2>
+                        <!-- Concepts will be dynamically inserted here -->
+                    </div>
+
+                    <!-- Drop Zones Column -->
+                    <div id="descriptions-container" class="col-lg-6 d-flex flex-column gap-3">
+                        <h2 class="h4 fw-semibold text-center text-secondary mb-2">Descriptions</h2>
+                        <!-- Descriptions will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Controls and Feedback -->
+                <div class="mt-5 text-center">
+                    <button id="reset-button" class="btn btn-primary btn-lg fw-bold py-2 px-4 shadow">
+                        Reset Activity
+                    </button>
+                    <div id="feedback-message" class="mt-4 fs-5 fw-medium opacity-0"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Moodle Book Navigation Script -->
+    <script>
+        document.querySelectorAll('.sub-chapter').forEach(item => {
+            item.addEventListener('click', event => {
+                let parentId = '';
+                const href = event.target.getAttribute('href');
+                if(href.includes('c1-')) parentId = 'v-pills-c1-tab';
+                if(href.includes('c2-')) parentId = 'v-pills-c2-tab';
+                if(href.includes('c3-')) parentId = 'v-pills-c3-tab';
+                
+                document.querySelectorAll('.toc-container .nav-link:not(.sub-chapter)').forEach(tab => {
+                    tab.classList.remove('active');
+                    tab.setAttribute('aria-selected', 'false');
+                });
+
+                const parentTab = document.getElementById(parentId);
+                if(parentTab){
+                    parentTab.classList.add('active');
+                    parentTab.setAttribute('aria-selected', 'true');
+                }
+            });
+        });
+    </script>
+
+    <!-- Drag and Drop Activity Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const activityData = [
+                { id: 'market-focus', concept: 'Market Focus', description: 'The specific market segment an organisation serves, influencing projects aimed at increasing market share or expansion. Think: "Who do we want to serve?"' },
+                { id: 'mission-statement', concept: 'Mission Statement', description: 'A broad definition of an organisation\'s purpose, uniting stakeholders towards a common goal and setting out company values. Think: "Why do we exist?"' },
+                { id: 'strategy-plans', concept: 'Strategy Plans', description: 'Outlines the medium to long-term objectives, giving direction and thought to the future of the organisation. Think: "How do we get there?"' },
+                { id: 'values-ethics', concept: 'Values & Ethics', description: 'Underpins how business is conducted and the expected behaviour of employees, often in non-monetary terms. Think: "What guides our decisions?"' },
+                { id: 'project-justification', concept: 'Project Justification', description: 'The rationale for a project\'s initiation, intrinsically linked to enhancing the business in areas outlined by broader strategies. Think: "Why this project?"' }
+            ];
+
+            const conceptsContainer = document.getElementById('concepts-container');
+            const descriptionsContainer = document.getElementById('descriptions-container');
+            const resetButton = document.getElementById('reset-button');
+            const feedbackMessage = document.getElementById('feedback-message');
+
+            let draggedItem = null;
+            let correctMatches = 0;
+
+            function initializeActivity() {
+                const shuffledConcepts = [...activityData].sort(() => Math.random() - 0.5);
+                const shuffledDescriptions = [...activityData].sort(() => Math.random() - 0.5);
+
+                conceptsContainer.innerHTML = '<h2 class="h4 fw-semibold text-center text-secondary mb-2">Concepts</h2>';
+                descriptionsContainer.innerHTML = '<h2 class="h4 fw-semibold text-center text-secondary mb-2">Descriptions</h2>';
+                correctMatches = 0;
+                updateFeedback('');
+
+                shuffledConcepts.forEach(item => {
+                    const conceptEl = document.createElement('div');
+                    conceptEl.id = `concept-${item.id}`;
+                    conceptEl.dataset.id = item.id;
+                    conceptEl.draggable = true;
+                    conceptEl.className = 'draggable-item bg-white p-3 rounded border border-2 shadow-sm text-center';
+                    conceptEl.innerHTML = `<p class="fw-semibold m-0">${item.concept}</p>`;
+                    conceptsContainer.appendChild(conceptEl);
+                });
+
+                shuffledDescriptions.forEach(item => {
+                    const descriptionEl = document.createElement('div');
+                    descriptionEl.id = `desc-${item.id}`;
+                    descriptionEl.dataset.id = item.id;
+                    descriptionEl.className = 'drop-zone bg-light p-3 rounded border border-2 border-dashed d-flex align-items-center justify-content-center';
+                    descriptionEl.style.minHeight = '80px';
+                    descriptionEl.innerHTML = `<p class="text-secondary text-center m-0">${item.description}</p>`;
+                    descriptionsContainer.appendChild(descriptionEl);
+                });
+
+                addEventListeners();
+            }
+            
+            function addEventListeners() {
+                document.querySelectorAll('.draggable-item').forEach(item => {
+                    item.addEventListener('dragstart', handleDragStart);
+                    item.addEventListener('dragend', handleDragEnd);
+                });
+
+                document.querySelectorAll('.drop-zone').forEach(zone => {
+                    zone.addEventListener('dragover', handleDragOver);
+                    zone.addEventListener('dragleave', handleDragLeave);
+                    zone.addEventListener('drop', handleDrop);
+                });
+            }
+
+            function handleDragStart(e) {
+                draggedItem = e.target.closest('.draggable-item');
+                setTimeout(() => {
+                    if(draggedItem) draggedItem.style.opacity = '0.5';
+                }, 0);
+            }
+
+            function handleDragEnd() {
+                if (draggedItem) {
+                    draggedItem.style.opacity = '1';
+                }
+                draggedItem = null;
+            }
+
+            function handleDragOver(e) {
+                e.preventDefault();
+                const dropZone = e.target.closest('.drop-zone');
+                if (dropZone && !dropZone.classList.contains('correct')) {
+                    dropZone.classList.add('drag-over');
+                }
+            }
+
+            function handleDragLeave(e) {
+                const dropZone = e.target.closest('.drop-zone');
+                if (dropZone) {
+                    dropZone.classList.remove('drag-over');
+                }
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                const dropZone = e.target.closest('.drop-zone');
+                if (!dropZone || !draggedItem || dropZone.classList.contains('correct')) return;
+
+                dropZone.classList.remove('drag-over');
+                const draggedId = draggedItem.dataset.id;
+                const dropZoneId = dropZone.dataset.id;
+
+                if (draggedId === dropZoneId) {
+                    handleCorrectMatch(draggedItem, dropZone);
+                } else {
+                    handleIncorrectMatch(dropZone);
+                }
+            }
+
+            function handleCorrectMatch(item, zone) {
+                zone.classList.add('correct');
+                zone.classList.remove('border-dashed', 'bg-light');
+                zone.innerHTML = ''; 
+                
+                const clonedItem = item.cloneNode(true);
+                clonedItem.draggable = false;
+                clonedItem.classList.remove('draggable-item', 'bg-white');
+                clonedItem.classList.add('bg-success-subtle', 'border-success');
+                
+                const originalDescription = activityData.find(d => d.id === zone.dataset.id).description;
+                clonedItem.innerHTML += `<p class="small text-success-emphasis mt-2 mb-0">${originalDescription}</p>`;
+                
+                zone.appendChild(clonedItem);
+                item.style.display = 'none';
+                correctMatches++;
+                checkCompletion();
+            }
+
+            function handleIncorrectMatch(zone) {
+                zone.classList.add('incorrect');
+                setTimeout(() => {
+                    zone.classList.remove('incorrect');
+                }, 500);
+            }
+            
+            function checkCompletion() {
+                if (correctMatches === activityData.length) {
+                    updateFeedback('Congratulations! You\'ve matched all the concepts correctly!', 'success');
+                }
+            }
+
+            function updateFeedback(message, type = 'primary') {
+                feedbackMessage.textContent = message;
+                feedbackMessage.className = `mt-4 fs-5 fw-medium opacity-0 transition-opacity`;
+                if (message) {
+                    feedbackMessage.classList.add(`text-${type}`, 'opacity-100');
+                }
+            }
+
+            resetButton.addEventListener('click', initializeActivity);
+            initializeActivity();
+        });
+    </script>
+
+</body>
+</html>
