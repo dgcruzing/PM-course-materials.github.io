@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert WHS Advice: A Project Management Perspective</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles & Tailwind Config -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .toc-link.active {
+            background-color: #e0e7ff; /* indigo-100 */
+            color: #4338ca; /* indigo-800 */
+            font-weight: 600;
+            border-left-color: #4f46e5; /* indigo-600 */
+        }
+        .content-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+        .shake-animation {
+            animation: shake 0.5s;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5', // Indigo 600
+                        secondary: '#10b981', // Emerald 500
+                        lightgray: '#f0f4f8',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased text-slate-700">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Header Section -->
+        <header class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8 text-center border-t-4 border-primary">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800 tracking-tight">Identifying Requirements for Expert WHS Advice</h1>
+            <p class="mt-2 text-lg text-slate-500">A Project Management Perspective</p>
+        </header>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Table of Contents (Sticky Sidebar) -->
+            <aside class="lg:w-1/3 xl:w-1/4 lg:sticky top-8 self-start">
+                <nav class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-slate-800 mb-4 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        Course Contents
+                    </h2>
+                    <div id="table-of-contents" class="space-y-1">
+                        <!-- TOC links will be dynamically generated here -->
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="lg:w-2/3 xl:w-3/4">
+                <div id="content-container" class="space-y-6">
+                    <!-- Content will be dynamically injected here -->
+                </div>
+            </main>
+        </div>
+
+        <!-- Iframe Video Section -->
+        <div class="my-12 md:my-16">
+            <div class="bg-white p-4 rounded-xl shadow-lg">
+                <div class="relative" style="padding-top: 56.25%;"> <!-- 16:9 Aspect Ratio -->
+                    <iframe 
+                        class="absolute top-0 left-0 w-full h-full rounded-lg" 
+                        src="https://cdn.jwplayer.com/videos/s5V2tw8h-nzVpMYKH.mp4" 
+                        title="Instructional Video Placeholder" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drag and Drop Activity Section -->
+        <div class="my-12 md:my-16">
+            <hr class="border-t-2 border-slate-200 mb-12 md:mb-16">
+            <header class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800 tracking-tight">Key Triggers Matching Activity</h1>
+                <p class="mt-2 text-lg text-slate-500">Match the trigger to its correct description.</p>
+            </header>
+
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <div class="bg-indigo-50 border-l-4 border-indigo-400 text-indigo-700 p-4 rounded-md mb-8 text-center">
+                    <p><strong>Instructions:</strong> Drag a trigger from the left and drop it onto its matching scenario on the right.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Draggable Items Column -->
+                    <div class="space-y-4">
+                        <h2 class="text-xl font-bold text-center text-slate-600 mb-4">Triggers for Expert Advice</h2>
+                        <div id="concepts-container" class="space-y-4">
+                            <!-- Concepts will be dynamically inserted here -->
+                        </div>
+                    </div>
+
+                    <!-- Drop Zones Column -->
+                    <div class="space-y-4">
+                        <h2 class="text-xl font-bold text-center text-slate-600 mb-4">Scenarios</h2>
+                        <div id="descriptions-container" class="space-y-4">
+                            <!-- Descriptions will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls and Feedback -->
+                <div class="mt-8 text-center">
+                    <button id="reset-button" class="bg-primary hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                        Reset Activity
+                    </button>
+                    <div id="feedback-message" class="mt-4 text-lg font-semibold transition-opacity duration-500 opacity-0"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- DATA ---
+            const chapters = [
+                { 
+                    id: 'c1', 
+                    title: '1. Engage: The Project Manager\'s Dilemma', 
+                    content: `
+                        <div class="bg-indigo-50 border-l-4 border-indigo-500 text-indigo-800 p-4 rounded-r-lg mb-6 shadow-sm">
+                            <p class="font-semibold">Alright team, let's kick off with a scenario.</p>
+                            <p class="mt-1">You're managing a major office refurbishment project. Demolition is underway when a crew member discovers material that looks suspiciously like asbestos. Your project schedule is tight, your team has no experience with hazardous material abatement, and every hour of delay costs thousands. What's your next call?</p>
+                        </div>
+                        <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-800 p-4 rounded-r-lg mt-6 shadow-sm">
+                            <p class="font-semibold">This isn't just a technical problem; it's a critical project management decision point.</p>
+                            <p class="mt-1">Trying to "manage it internally" without the right expertise could lead to catastrophic failure—legally, financially, and most importantly, in your duty to protect your team. Knowing when to pause and call in the experts is not a sign of weakness; it's a core competency of a professional Project Manager.</p>
+                        </div>
+                    `
+                },
+                { 
+                    id: 'c2', 
+                    title: '2. Explore: The Ripple Effect of Risk', 
+                    content: `
+                        <div class="bg-sky-50 border-l-4 border-sky-500 text-sky-800 p-4 rounded-r-lg mb-6 shadow-sm">
+                            <p class="font-semibold">Before we dive into the formal requirements, consider the potential consequences of not seeking expert advice in that asbestos scenario.</p>
+                            <p class="mt-1">What are the risks across your project domains?</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                            <ul class="list-disc list-inside space-y-3">
+                                <li><strong>Scope Creep:</strong> Does dealing with hazardous material add unplanned activities?</li>
+                                <li><strong>Schedule Impact:</strong> What are the immediate and long-term delays?</li>
+                                <li><strong>Cost Overruns:</strong> Think about cleanup costs, specialised labour, and potential fines.</li>
+                                <li><strong>Legal & Regulatory:</strong> Are you in breach of WHS laws?</li>
+                                <li><strong>Reputation:</strong> What is the impact on your company's reputation if this is handled poorly?</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                { 
+                    id: 'c3', 
+                    title: '3. Explain: When to Seek Expert Advice', 
+                    content: `
+                        <div class="bg-emerald-50 border-l-4 border-emerald-500 text-emerald-800 p-4 rounded-r-lg mb-6 shadow-sm">
+                            <p class="font-semibold">The regulations and best practices are clear.</p>
+                            <p class="mt-1">Seeking advice from Subject Matter Experts (SMEs) is not optional under certain circumstances. Your WHS management system must plan for this.</p>
+                        </div>
+                    `, 
+                    subChapters: [
+                        { 
+                            id: 'c3-1', 
+                            title: '3.1. Key Triggers for Seeking Expert Advice', 
+                            content: `
+                                <p>You must identify the need for external expertise when you encounter:</p>
+                                <ul class="list-disc list-inside space-y-2 mt-4">
+                                    <li>A <strong>new hazard</strong> that your workers have never dealt with before.</li>
+                                    <li><strong>Extremely high risks</strong> associated with your industry, such as working with explosives in mining or complex demolitions in construction.</li>
+                                    <li>A <strong>lack of qualified internal workers</strong> to manage a specific WHS risk or requirement.</li>
+                                    <li>A <strong>shortage of resources</strong> or significant time constraints on a large project that may compromise WHS diligence.</li>
+                                    <li>A <strong>serious personal injury</strong> (physical or psychological) or, in the worst-case scenario, a workplace fatality.</li>
+                                </ul>` 
+                        },
+                        { 
+                            id: 'c3-2', 
+                            title: '3.2. Specific Areas Requiring Expert Input', 
+                            content: `
+                                <p>Expert advice is commonly sought for:</p>
+                                <ul class="list-disc list-inside space-y-2 mt-4">
+                                    <li><strong>Auditing</strong> WHS practices to ensure they are robust and compliant.</li>
+                                    <li>Ensuring and verifying <strong>compliance</strong> with WHS laws.</li>
+                                    <li>Developing and validating <strong>certified procedures</strong> for hazardous tasks.</li>
+                                    <li>Conducting complex <strong>scientific testing and analysis</strong>, such as air quality monitoring or material identification.</li>
+                                    <li>Obtaining <strong>medical advice</strong> related to worker health and fitness for duty.</li>
+                                    <li>Addressing complex <strong>mental health issues</strong> in the workplace.</li>
+                                    <li>Planning and delivering specialised <strong>training and development</strong> programs.</li>
+                                </ul>` 
+                        },
+                        {
+                            id: 'c3-3',
+                            title: '3.3. Sources of Expert Advice',
+                            content: `
+                                <p>As a PM, you need to know who to call. Your network of expert sources should include:</p>
+                                <ul class="list-disc list-inside space-y-2 mt-4">
+                                    <li><strong>Government Bodies:</strong> Such as Safe Work Australia or state-level regulators like WorkSafe Victoria, who can provide authoritative advice on legislation, codes of practice, and incident response.</li>
+                                    <li><strong>Consultants:</strong> SMEs who can review procedures, conduct audits, and deliver tailored training.</li>
+                                    <li><strong>Industry Bodies:</strong> Organisations specific to high-risk sectors (e.g., mining, construction) that provide specialised guidance.</li>
+                                    <li><strong>Specialised Companies:</strong> For example, an explosives manufacturer like Orica can provide expert advice on handling their products safely.</li>
+                                </ul>`
+                        }
+                    ]
+                },
+                { 
+                    id: 'c4', 
+                    title: '4. Elaborate: Integrating Expertise into Your Project Plan', 
+                    content: `
+                        <div class="bg-purple-50 border-l-4 border-purple-500 text-purple-800 p-4 rounded-r-lg mb-6 shadow-sm">
+                            <p class="font-semibold">Think of WHS experts as specialist subcontractors for risk management. They are a project resource.</p>
+                            <p class="mt-1">Your project planning should proactively identify points where this expertise might be needed. For a high-risk project, this might mean budgeting for a WHS consultant from the very beginning. Engaging them early, especially during the risk assessment phase, is a hallmark of a mature safety culture and robust project planning. It helps you prevent issues rather than just reacting to them.</p>
+                        </div>
+                    `
+                },
+                { 
+                    id: 'c5', 
+                    title: '5. Evaluate: Test Your Knowledge', 
+                    content: `
+                        <div class="bg-slate-50 border-l-4 border-slate-500 text-slate-800 p-4 rounded-r-lg mb-6 shadow-sm">
+                            <p class="font-semibold">Apply what you've learned to these scenarios.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-lg shadow-md border border-slate-200">
+                                <h4 class="font-bold text-slate-700">Scenario 1:</h4>
+                                <p>Your construction project is the first in the company to use a new type of chemical solvent. Which trigger for seeking expert advice does this fall under, and what specific type of advice might you need?</p>
+                                <div class="mt-4 bg-gray-50 p-3 rounded-lg">
+                                    <p class="font-semibold text-sm text-gray-600">Points to Ponder:</p>
+                                    <ul class="list-disc list-inside text-sm text-gray-500 mt-1">
+                                        <li>This clearly falls under the 'New Hazard' trigger.</li>
+                                        <li>You might need expert advice on chemical handling procedures (Safe Work Method Statement).</li>
+                                        <li>Consider seeking scientific testing for air quality or personal protective equipment (PPE) suitability.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-md border border-slate-200">
+                                <h4 class="font-bold text-slate-700">Scenario 2:</h4>
+                                <p>A project sponsor is pressuring you to skip a final WHS compliance audit to meet a deadline. Justify your response to the sponsor, referencing the value and potential legal necessity of expert advice.</p>
+                                <div class="mt-4 bg-gray-50 p-3 rounded-lg">
+                                    <p class="font-semibold text-sm text-gray-600">Points to Ponder:</p>
+                                    <ul class="list-disc list-inside text-sm text-gray-500 mt-1">
+                                        <li>This relates to ensuring and verifying 'Compliance with WHS laws'.</li>
+                                        <li>Skipping an audit could be a breach of due diligence and may have legal ramifications.</li>
+                                        <li>An external audit provides independent verification, protecting both the company and the project manager from liability.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+            ];
+            
+            const activityData = [
+                { id: 'new-hazard', concept: 'New Hazard', description: 'Your project is the first to use a new type of chemical solvent.' },
+                { id: 'high-risk', concept: 'High-Risk Activities', description: 'The project involves complex demolitions in a dense urban area.' },
+                { id: 'no-expertise', concept: 'Lack of Internal Expertise', description: 'A crew discovers asbestos-like material, and no one on the team is certified to handle it.' },
+                { id: 'constraints', concept: 'Resource Constraints', description: 'A sponsor pressures you to skip a compliance audit to meet a tight deadline.' },
+                { id: 'incident', concept: 'Serious Incident', description: 'A worker is seriously injured, triggering an immediate investigation and review of procedures.' }
+            ];
+
+            // --- Elements ---
+            const tocContainer = document.getElementById('table-of-contents');
+            const contentContainer = document.getElementById('content-container');
+            const conceptsContainer = document.getElementById('concepts-container');
+            const descriptionsContainer = document.getElementById('descriptions-container');
+            const resetButton = document.getElementById('reset-button');
+            const feedbackMessage = document.getElementById('feedback-message');
+
+            // --- Moodle Book Logic ---
+            function renderContent() {
+                tocContainer.innerHTML = '';
+                contentContainer.innerHTML = '';
+                
+                chapters.forEach(chapter => {
+                    const chapterLink = createTocLink(chapter.id, chapter.title, false);
+                    tocContainer.appendChild(chapterLink);
+                    
+                    const chapterCard = createContentCard(chapter.id, chapter.title, chapter.content);
+                    contentContainer.appendChild(chapterCard);
+
+                    if (chapter.subChapters) {
+                        chapter.subChapters.forEach(sub => {
+                            const subChapterLink = createTocLink(sub.id, sub.title, true);
+                            tocContainer.appendChild(subChapterLink);
+                            
+                            const subChapterCard = createContentCard(sub.id, sub.title, sub.content);
+                            contentContainer.appendChild(subChapterCard);
+                        });
+                    }
+                });
+                
+                document.querySelector('.toc-link').classList.add('active');
+            }
+
+            function createTocLink(id, title, isSubChapter) {
+                const a = document.createElement('a');
+                a.href = `#${id}`;
+                a.dataset.targetId = id;
+                a.className = `toc-link block py-2 px-4 border-l-4 transition-colors duration-200 ${isSubChapter ? 'pl-8 text-sm' : 'font-semibold'} text-slate-600 hover:bg-slate-100 hover:text-slate-900 border-transparent`;
+                a.textContent = title;
+                a.addEventListener('click', handleTocClick);
+                return a;
+            }
+
+            function createContentCard(id, title, content) {
+                const div = document.createElement('div');
+                div.id = id;
+                div.className = 'content-card bg-white rounded-xl shadow-md p-6 md:p-8 content-fade-in';
+                let videoLink = `<a href="https://www.youtube.com/results?search_query=${encodeURIComponent(title)}" target="_blank" class="inline-block mt-4 text-primary font-semibold hover:underline">
+                        Find Related Videos ?
+                    </a>`;
+                if (id === 'c5') {
+                    videoLink = '';
+                }
+                div.innerHTML = `
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">${title}</h2>
+                    <div class="prose max-w-none text-slate-600">${content}</div>
+                    ${videoLink}`;
+                return div;
+            }
+
+            function handleTocClick(e) {
+                e.preventDefault();
+                const targetId = e.target.dataset.targetId;
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
+                    e.target.classList.add('active');
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+            
+            // --- Drag and Drop Logic ---
+            let draggedItem = null;
+            let correctMatches = 0;
+
+            function initializeActivity() {
+                const shuffledConcepts = [...activityData].sort(() => Math.random() - 0.5);
+                const shuffledDescriptions = [...activityData].sort(() => Math.random() - 0.5);
+
+                conceptsContainer.innerHTML = '';
+                descriptionsContainer.innerHTML = '';
+                correctMatches = 0;
+                updateFeedback('');
+
+                shuffledConcepts.forEach(item => {
+                    const conceptEl = document.createElement('div');
+                    conceptEl.id = `concept-${item.id}`;
+                    conceptEl.dataset.id = item.id;
+                    conceptEl.draggable = true;
+                    conceptEl.className = 'draggable-item bg-white p-4 rounded-lg border-2 border-slate-200 shadow-sm text-center cursor-grab transition-all duration-200';
+                    conceptEl.innerHTML = `<p class="font-semibold m-0">${item.concept}</p>`;
+                    conceptsContainer.appendChild(conceptEl);
+                });
+
+                shuffledDescriptions.forEach(item => {
+                    const descriptionEl = document.createElement('div');
+                    descriptionEl.id = `desc-${item.id}`;
+                    descriptionEl.dataset.id = item.id;
+                    descriptionEl.className = 'drop-zone bg-slate-100 p-4 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center transition-all duration-200';
+                    descriptionEl.style.minHeight = '80px';
+                    descriptionEl.innerHTML = `<p class="text-slate-500 text-center m-0">${item.description}</p>`;
+                    descriptionsContainer.appendChild(descriptionEl);
+                });
+
+                addDragDropListeners();
+            }
+            
+            function addDragDropListeners() {
+                document.querySelectorAll('.draggable-item').forEach(item => {
+                    item.addEventListener('dragstart', handleDragStart);
+                    item.addEventListener('dragend', handleDragEnd);
+                });
+
+                document.querySelectorAll('.drop-zone').forEach(zone => {
+                    zone.addEventListener('dragover', handleDragOver);
+                    zone.addEventListener('dragleave', handleDragLeave);
+                    zone.addEventListener('drop', handleDrop);
+                });
+            }
+
+            function handleDragStart(e) {
+                draggedItem = e.target.closest('.draggable-item');
+                draggedItem.classList.add('cursor-grabbing', 'scale-105', 'shadow-xl', 'bg-indigo-100');
+                setTimeout(() => {
+                    if(draggedItem) draggedItem.style.opacity = '0.5';
+                }, 0);
+            }
+
+            function handleDragEnd() {
+                if (draggedItem) {
+                    draggedItem.classList.remove('cursor-grabbing', 'scale-105', 'shadow-xl', 'bg-indigo-100');
+                    draggedItem.style.opacity = '1';
+                }
+                draggedItem = null;
+            }
+
+            function handleDragOver(e) {
+                e.preventDefault();
+                const dropZone = e.target.closest('.drop-zone');
+                if (dropZone && !dropZone.classList.contains('correct')) {
+                    dropZone.classList.add('bg-indigo-100', 'border-primary');
+                }
+            }
+
+            function handleDragLeave(e) {
+                const dropZone = e.target.closest('.drop-zone');
+                if (dropZone) {
+                    dropZone.classList.remove('bg-indigo-100', 'border-primary');
+                }
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                const dropZone = e.target.closest('.drop-zone');
+                if (!dropZone || !draggedItem || dropZone.classList.contains('correct')) return;
+
+                dropZone.classList.remove('bg-indigo-100', 'border-primary');
+                const draggedId = draggedItem.dataset.id;
+                const dropZoneId = dropZone.dataset.id;
+
+                if (draggedId === dropZoneId) {
+                    handleCorrectMatch(draggedItem, dropZone);
+                } else {
+                    handleIncorrectMatch(dropZone);
+                }
+            }
+
+            function handleCorrectMatch(item, zone) {
+                zone.classList.add('correct', 'bg-emerald-50', 'border-secondary', 'border-solid');
+                zone.classList.remove('border-dashed', 'bg-slate-100');
+                zone.innerHTML = '';
+                
+                const clonedItem = item.cloneNode(true);
+                clonedItem.draggable = false;
+                clonedItem.className = 'bg-emerald-100 text-emerald-800 p-3 rounded-md border-2 border-emerald-300 w-full';
+                
+                const originalDescription = activityData.find(d => d.id === zone.dataset.id).description;
+                clonedItem.innerHTML += `<p class="text-sm text-emerald-600 mt-2 mb-0">${originalDescription}</p>`;
+                
+                zone.appendChild(clonedItem);
+                item.classList.add('opacity-50', 'pointer-events-none');
+                correctMatches++;
+                checkCompletion();
+            }
+
+            function handleIncorrectMatch(zone) {
+                zone.classList.add('shake-animation', 'border-red-500');
+                setTimeout(() => {
+                    zone.classList.remove('shake-animation', 'border-red-500');
+                }, 500);
+            }
+            
+            function checkCompletion() {
+                if (correctMatches === activityData.length) {
+                    updateFeedback('Congratulations! You\'ve matched all the concepts correctly!', 'success');
+                }
+            }
+
+            function updateFeedback(message, type = 'primary') {
+                feedbackMessage.textContent = message;
+                const colorClass = type === 'success' ? 'text-secondary' : 'text-primary';
+                feedbackMessage.className = `mt-4 text-lg font-semibold transition-opacity duration-500 opacity-0 ${colorClass}`;
+                if (message) {
+                    setTimeout(() => feedbackMessage.classList.remove('opacity-0'), 100);
+                }
+            }
+
+            // --- Initializations ---
+            renderContent();
+            resetButton.addEventListener('click', initializeActivity);
+            initializeActivity();
+        });
+    </script>
+
+</body>
+</html>
