@@ -1,0 +1,130 @@
+{
+  "title": "Interactive HTML Learning Module Guide",
+  "description": "Creating interactive 5E instructional modules with HTML, Tailwind CSS, and vanilla JavaScript.",
+  "globs": [
+    "**/*.html"
+  ],
+  "alwaysApply": true,
+  "sections": [
+    {
+      "title": "1. Module Architecture & Philosophy",
+      "content": "All interactive modules must be built as a single, self-contained .html file. This ensures maximum portability and ease of use in various learning environments like Moodle or a standard web server.",
+      "points": [
+        {
+          "title": "Tech Stack",
+          "detail": "The required stack is HTML, Tailwind CSS (via CDN), and vanilla JavaScript. No external frameworks like React, Vue, or jQuery are permitted."
+        },
+        {
+          "title": "Data-Driven Content",
+          "detail": "The module's text content, structure, and activity data must be defined in JavaScript arrays/objects at the top of the main script block. The HTML body should be a minimal shell, with content dynamically injected by the script. This is the most critical rule."
+        },
+        {
+          "title": "Instructional Model",
+          "detail": "Content must be structured around the 5E Instructional Model (Engage, Explore, Explain, Elaborate, Evaluate)."
+        },
+        {
+          "title": "Responsive & Accessible",
+          "detail": "Modules must be fully responsive, using mobile-first principles with Tailwind's breakpoint utilities."
+        }
+      ]
+    },
+    {
+      "title": "2. HTML File Structure",
+      "content": "The HTML document must follow this specific structure to ensure consistency and proper script execution.",
+      "code": {
+        "language": "html",
+        "snippet": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Module Title</title>\n    \n    <script src=\"https://cdn.tailwindcss.com\"></script>\n    \n    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap\" rel=\"stylesheet\">\n    \n    <style>\n        /* Required global styles and keyframe animations */\n        body { font-family: 'Inter', sans-serif; /* ... */ }\n        .toc-link.active { /* ... */ }\n        @keyframes fadeIn { /* ... */ }\n        @keyframes shake { /* ... */ }\n    </style>\n    <script>\n        // Required Tailwind theme extensions\n        tailwind.config = { /* ... */ }\n    </script>\n</head>\n<body class=\"antialiased text-slate-700\">\n\n    <div class=\"container mx-auto p-4 md:p-8\">\n        <header> </header>\n\n        <div class=\"flex flex-col lg:flex-row gap-8\">\n            <aside class=\"lg:w-1/3 xl:w-1/4 lg:sticky top-8 self-start\">\n                <nav id=\"table-of-contents-container\">\n                </nav>\n            </aside>\n\n            <main class=\"lg:w-2/3 xl:w-3/4\">\n                <div id=\"content-container\" class=\"space-y-6\">\n                </div>\n            </main>\n        </div>\n        \n        <div id=\"activity-section\">\n        </div>\n    </div>\n\n    <script>\n        document.addEventListener('DOMContentLoaded', function () {\n            // All module logic, data, and rendering functions go here.\n        });\n    </script>\n</body>\n</html>"
+      }
+    },
+    {
+      "title": "3. JavaScript Engine Conventions",
+      "content": "The core of the module is a single vanilla JavaScript script block at the end of the <body>.",
+      "subsections": [
+        {
+          "title": "3.1. Data-Driven Content Pattern",
+          "content": "All chapter and activity content must be defined in two distinct data structures: chapters and activityData.",
+          "code": {
+            "language": "javascript",
+            "snippet": "const chapters = [\n    {\n        id: 'c1',\n        title: '1. Engage: The Project Manager\\'s Dilemma',\n        content: `<p>HTML content for this section...</p>`\n    },\n    {\n        id: 'c3',\n        title: '3. Explain: Core Concepts',\n        content: `<p>Introductory content...</p>`,\n        subChapters: [\n            {\n                id: 'c3-1',\n                title: '3.1. Sub-Chapter Title',\n                content: `<p>Detailed content...</p>`\n            }\n        ]\n    }\n];\n\nconst activityData = [\n    { id: 'item-1', concept: 'Concept A', description: 'This is the description for Concept A.' },\n    { id: 'item-2', concept: 'Concept B', description: 'This is the description for Concept B.' }\n];"
+          }
+        },
+        {
+          "title": "3.2. Dynamic Rendering Pattern",
+          "content": "Use dedicated functions to generate DOM elements from the data objects. This keeps the logic clean and separated from the data.",
+          "code": {
+            "language": "javascript",
+            "snippet": "function renderContent() {\n    // Loop through the 'chapters' array\n    // Call createContentCard() and createTocLink() for each item\n}\n\nfunction createContentCard(id, title, content) {\n    const card = document.createElement('div');\n    card.id = id;\n    card.className = 'content-card bg-white rounded-xl shadow-md p-6 md:p-8';\n    const youtubeLink = `<a href=\"https://www.youtube.com/results?search_query=${encodeURIComponent(title)}\">...</a>`;\n    card.innerHTML = `<h2>${title}</h2><div>${content}</div>${youtubeLink}`;\n    return card;\n}\n\ndocument.addEventListener('DOMContentLoaded', function () {\n    renderContent();\n    initializeActivity();\n    // ... other initializations\n});"
+          }
+        }
+      ]
+    },
+    {
+      "title": "4. Styling & Component Patterns (Tailwind CSS)",
+      "content": "Styling must adhere to a consistent visual language defined by Tailwind utility classes.",
+      "subsections": [
+        {
+          "title": "4.1. Color System & Lecturer Persona",
+          "content": "Each of the 5E sections must begin with a themed \"callout box\" to deliver the \"Project Management Lecturer\" persona.",
+          "pattern": "bg-color-50, border-l-4 border-color-500, text-color-800.",
+          "standardColors": {
+            "Engage": "Indigo",
+            "Explore": "Sky",
+            "Explain": "Emerald",
+            "Elaborate": "Purple",
+            "Evaluate": "Slate"
+          },
+          "code": {
+            "language": "html",
+            "snippet": "<div class=\"bg-indigo-50 border-l-4 border-indigo-500 text-indigo-800 p-4 rounded-r-lg mb-6 shadow-sm\">\n    <p class=\"font-semibold\">Alright team, let's kick off with a scenario.</p>\n    <p class=\"mt-1\">This is the engaging introduction for the lesson...</p>\n</div>"
+          }
+        },
+        {
+          "title": "4.2. Drag & Drop Activity Styling",
+          "content": "The activity requires specific styling for user feedback.",
+          "points": [
+            "Drop Zones (Initial State): bg-slate-100, border-dashed, border-slate-300.",
+            "Drop Zones (Hover State): bg-indigo-100, border-primary.",
+            "Correct Match: The drop zone turns emerald (bg-emerald-50, border-secondary) and holds the matched item. The original draggable item becomes faded (opacity-50).",
+            "Incorrect Match: The drop zone must use the shake-animation and have a temporary red border."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "5. Interactivity Patterns",
+      "content": "Functionality for the TOC and the activity must be implemented consistently.",
+      "subsections": [
+        {
+          "title": "5.1. Table of Contents (TOC)",
+          "points": [
+            "The TOC must be in a sticky aside element.",
+            "Links must use e.preventDefault() and element.scrollIntoView({ behavior: 'smooth' }) for navigation.",
+            "The clicked link must receive an .active class for visual highlighting."
+          ]
+        },
+        {
+          "title": "5.2. Drag & Drop Activity Logic",
+          "content": "The activity script must perform these actions in order:",
+          "steps": [
+            "Initialize: On page load and on reset, dynamically create and shuffle both the \"concepts\" and \"descriptions\" from the activityData array.",
+            "Handle Drag & Drop: Use dragstart, dragover, drop, and dragend event listeners.",
+            "Validate: On drop, compare the dataset.id of the dragged item and the drop zone.",
+            "Provide Feedback: Apply the correct styling for a match or the incorrect styling for a mismatch.",
+            "Track State: Maintain a counter for correctMatches.",
+            "Complete: When correctMatches equals the total number of items, display a congratulatory message.",
+            "Reset: A \"Reset\" button must call the initialization function to restart the activity."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "6. Common Anti-Patterns to Avoid",
+      "points": [
+        "❌ Hardcoding Content: Do not write chapter or activity text directly into the main HTML body. Always use the JS data-driven pattern.",
+        "❌ Using External JS Libraries: Do not import jQuery, Alpine.js, or any other JS library. Use vanilla JavaScript only.",
+        "❌ Inconsistent Styling: Do not invent new color schemes or component styles. Adhere strictly to the defined patterns (callout boxes, cards, activity feedback).",
+        "❌ Missing Dynamic YouTube Links: Every content card (except the final 'Evaluate' section) must have a dynamically generated \"Find Related Videos\" link."
+      ]
+    }
+  ]
+}
