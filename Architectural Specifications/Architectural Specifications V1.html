@@ -1,0 +1,319 @@
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architectural Specifications: An Interactive 5E Learning Module</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .nav-link.active {
+            background-color: #4f46e5;
+            color: white;
+        }
+        .draggable {
+            cursor: move;
+        }
+        .drop-target {
+            border: 2px dashed #ccc;
+            min-height: 50px;
+        }
+        .drop-target.drag-over {
+            background-color: #e0e7ff;
+        }
+        .correct-drop {
+            background-color: #dcfce7;
+            border-color: #22c55e;
+        }
+        .incorrect-drop {
+            background-color: #fee2e2;
+            border-color: #ef4444;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-900">Architectural Specifications: From Theory to Practical Mastery</h1>
+            <p class="text-xl text-gray-600 mt-2">An Interactive 5E Learning Module</p>
+        </header>
+
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Navigation Sidebar -->
+            <aside class="md:w-1/4">
+                <nav id="navigation" class="sticky top-8 bg-white p-4 rounded-lg shadow-md">
+                    <h2 class="font-bold text-lg mb-4">Course Modules</h2>
+                    <ul class="space-y-2">
+                        <li><a href="#engage" class="nav-link block p-3 rounded-md hover:bg-gray-200 transition-colors duration-200 active">1. Engage: The "Missing Railing"</a></li>
+                        <li><a href="#explore" class="nav-link block p-3 rounded-md hover:bg-gray-200 transition-colors duration-200">2. Explore: Drawings vs. Specs</a></li>
+                        <li><a href="#explain" class="nav-link block p-3 rounded-md hover:bg-gray-200 transition-colors duration-200">3. Explain: Anatomy of a Spec</a></li>
+                        <li><a href="#elaborate" class="nav-link block p-3 rounded-md hover:bg-gray-200 transition-colors duration-200">4. Elaborate: The Rewrite</a></li>
+                        <li><a href="#evaluate" class="nav-link block p-3 rounded-md hover:bg-gray-200 transition-colors duration-200">5. Evaluate: Final Challenge</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="md:w-3/4">
+                <!-- Engage Section -->
+                <section id="engage" class="content-section active bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">1. Engage: The Case of the Missing Railing</h2>
+                    <p class="mb-4">Welcome, everyone. In project management, we often say that the devil is in the details. Today, we're going to look at one of the most critical sets of details in any construction project: the specifications. To kick things off, let's consider a real-world scenario that could have ended in disaster, a change order, or even a lawsuit.</p>
+                    <div class="bg-amber-100 border-l-4 border-amber-500 text-amber-700 p-4 rounded-md mb-4">
+                        <p class="font-bold">The Scenario:</p>
+                        <p>During a final project walk-through, an architect noticed a critical safety railing was missing next to a walkway. When she questioned the contractor, they correctly pointed out that the railing was <strong>not shown on the drawings</strong>. A classic project dilemma.</p>
+                    </div>
+                    <p class="font-bold mb-2">What do you think happened next?</p>
+                    <div id="engage-quiz" class="space-y-2">
+                        <button onclick="checkEngageAnswer(false, this)" class="w-full text-left p-3 bg-gray-200 hover:bg-indigo-200 rounded-md">A) The contractor had to install it for free based on general safety standards.</button>
+                        <button onclick="checkEngageAnswer(true, this)" class="w-full text-left p-3 bg-gray-200 hover:bg-indigo-200 rounded-md">B) The architect had to issue a costly "change order" to add the railing.</button>
+                        <button onclick="checkEngageAnswer(false, this)" class="w-full text-left p-3 bg-gray-200 hover:bg-indigo-200 rounded-md">C) The answer was found in another key document.</button>
+                    </div>
+                    <div id="engage-feedback" class="mt-4 p-4 rounded-md hidden"></div>
+                </section>
+
+                <!-- Explore Section -->
+                <section id="explore" class="content-section bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">2. Explore: Drawings vs. Specifications</h2>
+                    <p class="mb-4">Excellent. That last question leads us to the core of this lesson. The architect found the solution in the <strong>specifications</strong>. This is the fundamental concept we need to explore: the symbiotic relationship between drawings and specifications. They are two halves of a whole.</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                            <h3 class="font-bold text-lg text-blue-800">Drawings: The Visual Guide</h3>
+                            <p>Drawings are the visual guide. They show <strong>WHAT</strong> goes into the project and <strong>WHERE</strong> it is located. Think of them as a map showing dimensions, locations, and shapes.</p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <h3 class="font-bold text-lg text-green-800">Specifications: The Written Guide</h3>
+                            <p>Specifications are the written guide. They detail <strong>HOW</strong> something should be built and <strong>WITH WHAT</strong> materials. This includes quality standards, installation methods, and testing requirements.</p>
+                        </div>
+                    </div>
+                     <p class="mt-4 font-bold">Let's test this concept. Where would you find the following information?</p>
+                    <div id="explore-activity" class="mt-4">
+                        <!-- Draggable Items -->
+                        <div class="flex flex-wrap gap-2 mb-4" id="draggable-items">
+                           <div id="item1" draggable="true" class="draggable bg-gray-200 p-2 rounded">The exact type of brick</div>
+                           <div id="item2" draggable="true" class="draggable bg-gray-200 p-2 rounded">The dimensions of a room</div>
+                           <div id="item3" draggable="true" class="draggable bg-gray-200 p-2 rounded">The location of a window</div>
+                           <div id="item4" draggable="true" class="draggable bg-gray-200 p-2 rounded">The mortar requirements</div>
+                        </div>
+                        <!-- Drop Targets -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-semibold text-center mb-2">Drawings</h4>
+                                <div id="drop-drawings" class="drop-target p-2 rounded-lg"></div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-center mb-2">Specifications</h4>
+                                <div id="drop-specs" class="drop-target p-2 rounded-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Explain Section -->
+                <section id="explain" class="content-section bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">3. Explain: The Anatomy of a Specification</h2>
+                    <p class="mb-4">Now that you understand the 'why', let's break down the 'what'. Most modern specifications follow a standard three-part format. Knowing this structure allows you to navigate these dense documents efficiently.</p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-gray-50 rounded-lg border">
+                            <h3 class="font-bold text-lg">Part 1: General</h3>
+                            <p>Think of this as the administrative rulebook. It covers submittals, quality assurance, warranties, and how to handle materials. It's about the procedures surrounding the work.</p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border">
+                            <h3 class="font-bold text-lg">Part 2: Products</h3>
+                            <p>This is the official shopping list. It details the approved manufacturers, model numbers, and material properties. It defines the physical substance of the building components.</p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border">
+                            <h3 class="font-bold text-lg">Part 3: Execution</h3>
+                            <p>This is the 'how-to' guide or the recipe. It provides step-by-step instructions for installation, application, and quality control on site. It's all about the workmanship.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Elaborate Section -->
+                <section id="elaborate" class="content-section bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">4. Elaborate: Spot the Weakness & Rewrite</h2>
+                    <p class="mb-4">Theory is one thing, but in the field, you'll be dealing with specs of varying quality. A poorly written spec is an invitation for disputes. Let's analyze one.</p>
+                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md mb-4">
+                        <p class="font-bold">Poorly Written Spec:</p>
+                        <p><strong>Part 2: Products</strong> - Use good quality latex paint.</p>
+                        <p><strong>Part 3: Execution</strong> - Apply paint to all interior walls.</p>
+                    </div>
+                    <div class="mb-4">
+                        <label for="weakness-analysis" class="font-bold block mb-2">What are the weaknesses here? (e.g., what's ambiguous or missing?)</label>
+                        <textarea id="weakness-analysis" rows="4" class="w-full p-2 border rounded-md" placeholder="Type your analysis here..."></textarea>
+                    </div>
+                    <div>
+                        <label for="spec-rewrite" class="font-bold block mb-2">Now, try to rewrite it. Make it clear, objective, and enforceable.</label>
+                        <textarea id="spec-rewrite" rows="6" class="w-full p-2 border rounded-md" placeholder="Your rewritten Part 2 and Part 3..."></textarea>
+                        <button onclick="showExampleRewrite()" class="mt-2 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Show Example</button>
+                    </div>
+                    <div id="example-rewrite" class="mt-4 p-4 bg-green-50 rounded-lg border border-green-200 hidden">
+                        <h4 class="font-bold text-green-800">Example of a Well-Written Spec:</h4>
+                        <p><strong>Part 2: Products</strong><br>
+                        2.1 MANUFACTURER: Sherwin-Williams<br>
+                        2.2 PRODUCT: "Cashmere" Interior Acrylic Latex<br>
+                        2.3 SHEEN: Eggshell</p>
+                        <p><strong>Part 3: Execution</strong><br>
+                        3.1 PREPARATION: Patch all holes and sand surfaces smooth before painting.<br>
+                        3.2 APPLICATION: Apply one full coat of primer and two full coats of finish paint. Allow 4 hours drying time between coats.</p>
+                    </div>
+                </section>
+
+                <!-- Evaluate Section -->
+                <section id="evaluate" class="content-section bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold mb-4 text-indigo-700">5. Evaluate: The Final Challenge</h2>
+                    <p class="mb-4">It's time to put everything together. As a project manager, you'll constantly be cross-referencing documents to make decisions. Here's your final test.</p>
+                    <div class="bg-gray-100 p-4 rounded-lg border">
+                        <p class="font-bold">Scenario:</p>
+                        <p class="mb-2">A contractor submits a change order request for an additional $5,000. They installed 'Schlage, MERANO' door handles, claiming they are an upgrade to what was specified.</p>
+                        <p class="mb-2"><strong>Drawing's Door Schedule says:</strong> "HW-1: LEVER, PRIVACY. MFR: SCHLAGE. SEE SPEC 08 71 00."</p>
+                        <p><strong>Specification 08 71 00 says:</strong> "Part 2: Products - 2.1 DOOR HARDWARE (HW-1) ... B. Series/Model: LATITUDE"</p>
+                    </div>
+                    <p class="font-bold my-4">Based on the documents, what is your decision?</p>
+                    <div id="evaluate-quiz" class="space-y-2">
+                        <button onclick="checkEvaluateAnswer(false, this)" class="w-full text-left p-3 bg-gray-200 hover:bg-indigo-200 rounded-md">A) Approve the request. The Merano model is better quality.</button>
+                        <button onclick="checkEvaluateAnswer(true, this)" class="w-full text-left p-3 bg-gray-200 hover:bg-indigo-200 rounded-md">B) Deny the request. The contractor did not install the specified model.</button>
+                        <button onclick="checkEvaluateAnswer(false, this)" class="w-full text-left p-3 bg-gray-200 hover:bg-indigo-200 rounded-md">C) Negotiate a lower price for the upgrade.</button>
+                    </div>
+                    <div id="evaluate-feedback" class="mt-4 p-4 rounded-md hidden"></div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.content-section');
+
+            // Navigation logic
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const targetId = this.getAttribute('href').substring(1);
+                    
+                    sections.forEach(section => {
+                        if (section.id === targetId) {
+                            section.classList.add('active');
+                        } else {
+                            section.classList.remove('active');
+                        }
+                    });
+                });
+            });
+            
+            // Drag and drop logic for Explore section
+            const draggables = document.querySelectorAll('.draggable');
+            const dropTargets = document.querySelectorAll('.drop-target');
+
+            draggables.forEach(draggable => {
+                draggable.addEventListener('dragstart', () => {
+                    draggable.classList.add('dragging');
+                });
+
+                draggable.addEventListener('dragend', () => {
+                    draggable.classList.remove('dragging');
+                });
+            });
+
+            dropTargets.forEach(target => {
+                target.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    target.classList.add('drag-over');
+                });
+                
+                target.addEventListener('dragleave', () => {
+                    target.classList.remove('drag-over');
+                });
+
+                target.addEventListener('drop', e => {
+                    e.preventDefault();
+                    target.classList.remove('drag-over');
+                    const draggable = document.querySelector('.dragging');
+                    target.appendChild(draggable);
+                    
+                    // Basic validation
+                    const isCorrect = checkDrop(draggable, target);
+                    if (isCorrect) {
+                        draggable.classList.add('correct-drop');
+                    } else {
+                        draggable.classList.add('incorrect-drop');
+                    }
+                });
+            });
+        });
+
+        function checkDrop(item, target) {
+            const drawingItems = ['item2', 'item3'];
+            const specItems = ['item1', 'item4'];
+            
+            if (target.id === 'drop-drawings' && drawingItems.includes(item.id)) {
+                return true;
+            }
+            if (target.id === 'drop-specs' && specItems.includes(item.id)) {
+                return true;
+            }
+            return false;
+        }
+
+        function checkEngageAnswer(isCorrect, element) {
+            const feedbackEl = document.getElementById('engage-feedback');
+            const buttons = document.querySelectorAll('#engage-quiz button');
+            buttons.forEach(b => b.disabled = true);
+            
+            if (isCorrect) {
+                feedbackEl.innerHTML = '<strong>Incorrect.</strong> While that\'s a possible outcome in a poorly documented project, there was a better safeguard in place. The key was in the other half of the contract documents.';
+                feedbackEl.className = 'mt-4 p-4 rounded-md bg-red-100 text-red-800';
+            } else {
+                 feedbackEl.innerHTML = '<strong>Correct!</strong> The architect consulted the <strong>specifications</strong>, where the railing was clearly defined. The contractor had to install it at no extra cost. This reveals the power of well-written specs.';
+                 feedbackEl.className = 'mt-4 p-4 rounded-md bg-green-100 text-green-800';
+            }
+             // The prompt has a logic error, the correct answer is C, but the button is B
+             // I will fix it here
+            if (element.textContent.includes("The answer was found in another key document")) {
+                 feedbackEl.innerHTML = '<strong>Correct!</strong> The architect consulted the <strong>specifications</strong>, where the railing was clearly defined. The contractor had to install it at no extra cost. This reveals the power of well-written specs.';
+                 feedbackEl.className = 'mt-4 p-4 rounded-md bg-green-100 text-green-800';
+            }
+
+
+            feedbackEl.classList.remove('hidden');
+        }
+
+        function showExampleRewrite() {
+            document.getElementById('example-rewrite').classList.remove('hidden');
+        }
+
+        function checkEvaluateAnswer(isCorrect, element) {
+            const feedbackEl = document.getElementById('evaluate-feedback');
+            const buttons = document.querySelectorAll('#evaluate-quiz button');
+            buttons.forEach(b => b.disabled = true);
+
+            if (isCorrect) {
+                feedbackEl.innerHTML = '<strong>Correct. Decision: Deny.</strong> The contract is explicit. The specification named the "LATITUDE" model. The contractor made an unapproved substitution and is not entitled to extra payment. You have a contractual obligation to enforce the spec.';
+                feedbackEl.className = 'mt-4 p-4 rounded-md bg-green-100 text-green-800';
+                element.classList.add('bg-green-200');
+            } else {
+                feedbackEl.innerHTML = '<strong>Incorrect.</strong> Your decision must be based strictly on the contract documents (drawings and specs). The spec explicitly named the "LATITUDE" model. Any deviation is a failure to comply with the contract.';
+                feedbackEl.className = 'mt-4 p-4 rounded-md bg-red-100 text-red-800';
+                element.classList.add('bg-red-200');
+            }
+            feedbackEl.classList.remove('hidden');
+        }
+    </script>
+
+</body>
+</html>
