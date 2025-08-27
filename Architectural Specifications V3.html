@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architectural Specifications: From Theory to Practical Mastery</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles & Tailwind Config -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .toc-link.active {
+            background-color: #e0e7ff; /* indigo-100 */
+            color: #4338ca; /* indigo-800 */
+            font-weight: 600;
+            border-left-color: #4f46e5; /* indigo-600 */
+        }
+        .content-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+        .shake-animation {
+            animation: shake 0.5s;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5', // Indigo 600
+                        secondary: '#10b981', // Emerald 500
+                        lightgray: '#f0f4f8',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased text-slate-700">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Header Section -->
+        <header class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8 text-center border-t-4 border-primary">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800 tracking-tight">Architectural Specifications: From Theory to Practical Mastery</h1>
+            <p class="mt-2 text-lg text-slate-500">An Interactive 5E Learning Module</p>
+        </header>
+
+        <!-- Video Placeholder Section -->
+        <div class="bg-white p-4 md:p-8 rounded-xl shadow-lg mb-8">
+            <h2 class="text-xl font-bold text-slate-800 mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                Course Introduction Video
+            </h2>
+            <div class="relative" style="padding-top: 56.25%;"> <!-- 16:9 Aspect Ratio -->
+                <iframe
+                    class="absolute top-0 left-0 w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/3dGh7EwMfwA?si=wfuglPT7EtZF5EJ1"
+                    title="Architectural Specifications Course Introduction"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p class="mt-4 text-slate-600 text-center">Watch this introductory video to understand the importance of specifications in construction project management.</p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Table of Contents (Sticky Sidebar) -->
+            <aside class="lg:w-1/3 xl:w-1/4 lg:sticky top-8 self-start">
+                <nav class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-slate-800 mb-4 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        Course Contents
+                    </h2>
+                    <div id="table-of-contents" class="space-y-1">
+                        <!-- TOC links will be dynamically generated here -->
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="lg:w-2/3 xl:w-3/4">
+                <div id="content-container" class="space-y-6">
+                    <!-- Content will be dynamically injected here -->
+                </div>
+            </main>
+        </div>
+
+        <!-- Drag and Drop Activity Section -->
+        <div class="my-12 md:my-16">
+            <hr class="border-t-2 border-slate-200 mb-12 md:mb-16">
+            <header class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800 tracking-tight">Drawings vs. Specifications Matching Activity</h1>
+                <p class="mt-2 text-lg text-slate-500">Match each piece of information to where it belongs in construction documents.</p>
+            </header>
+
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <div class="bg-indigo-50 border-l-4 border-indigo-400 text-indigo-700 p-4 rounded-md mb-8 text-center">
+                    <p><strong>Instructions:</strong> Drag information from the left and drop it onto the correct document type on the right.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Draggable Items Column -->
+                    <div class="space-y-4">
+                        <h2 class="text-xl font-bold text-center text-slate-600 mb-4">Project Information</h2>
+                        <div id="concepts-container" class="space-y-4">
+                            <!-- Concepts will be dynamically inserted here -->
+                        </div>
+                    </div>
+
+                    <!-- Drop Zones Column -->
+                    <div class="space-y-4">
+                        <h2 class="text-xl font-bold text-center text-slate-600 mb-4">Document Types</h2>
+                        <div id="descriptions-container" class="space-y-4">
+                            <!-- Descriptions will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls and Feedback -->
+                <div class="mt-8 text-center">
+                    <button id="reset-button" class="bg-primary hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+                        Reset Activity
+                    </button>
+                    <div id="feedback-message" class="mt-4 text-lg font-semibold transition-opacity duration-500 opacity-0"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- DATA ---
+            const chapters = [
+                {
+                    id: 'c1',
+                    title: '1. Engage: The Missing Railing Crisis',
+                    content: `
+                        <div class="bg-indigo-50 border-l-4 border-indigo-500 text-indigo-800 p-4 rounded-r-lg mb-6 shadow-sm">
+                            <p class="font-semibold">Alright team, let's dive into a real-world scenario that happens all too often in construction projects.</p>
+                            <p class="mt-1">You're the project manager on a high-rise office building. Construction is nearing completion when during the final walk-through, you notice a critical safety railing is missing from a balcony walkway. The contractor points out that this railing wasn't shown on the architectural drawings. What happens next?</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200 mb-6">
+                            <h3 class="font-bold text-lg text-slate-800 mb-4">The Cost of Poor Specifications</h3>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div class="text-center p-4 bg-red-50 rounded-lg border border-red-200">
+                                    <div class="text-2xl font-bold text-red-600 mb-2">$25K+</div>
+                                    <div class="text-sm text-red-700">Change Order Cost</div>
+                                </div>
+                                <div class="text-center p-4 bg-orange-50 rounded-lg border border-orange-200">
+                                    <div class="text-2xl font-bold text-orange-600 mb-2">2-4 Weeks</div>
+                                    <div class="text-sm text-orange-700">Schedule Delay</div>
+                                </div>
+                                <div class="text-center p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                                    <div class="text-2xl font-bold text-yellow-600 mb-2">High</div>
+                                    <div class="text-sm text-yellow-700">Liability Risk</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-800 p-4 rounded-r-lg mb-6 shadow-sm">
+                            <p class="font-semibold">This scenario illustrates why specifications are absolutely critical in construction management.</p>
+                            <p class="mt-1">While drawings show WHAT goes where, specifications detail HOW things should be built, WHAT materials to use, and WHAT quality standards must be met. Together, they form the complete contract document package.</p>
+                        </div>
+                    `
+                },
+                {
+                    id: 'c2',
+                    title: '2. Explore: The Symbiotic Relationship',
+                    content: `
+                        <div class="bg-sky-50 border-l-4 border-sky-500 text-sky-800 p-4 rounded-r-lg mb-6 shadow-sm">
+                            <p class="font-semibold">Think of drawings and specifications as two halves of a complete construction puzzle.</p>
+                            <p class="mt-1">They work together to provide all the information needed to successfully execute a construction project. Understanding how they complement each other is key to effective project management.</p>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                                <h3 class="font-bold text-lg text-blue-800 mb-4 flex items-center">
+                                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Architectural Drawings
+                                </h3>
+                                <ul class="space-y-2 text-slate-600">
+                                    <li><strong>Visual representation</strong> - Shows relationships and spatial arrangements</li>
+                                    <li><strong>Dimensions and quantities</strong> - Specific measurements and counts</li>
+                                    <li><strong>Locations and orientations</strong> - Where things go and how they relate</li>
+                                    <li><strong>Overall design intent</strong> - The architect's vision</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                                <h3 class="font-bold text-lg text-green-800 mb-4 flex items-center">
+                                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Technical Specifications
+                                </h3>
+                                <ul class="space-y-2 text-slate-600">
+                                    <li><strong>Material requirements</strong> - Specific products and manufacturers</li>
+                                    <li><strong>Quality standards</strong> - Performance and acceptance criteria</li>
+                                    <li><strong>Installation methods</strong> - How work should be performed</li>
+                                    <li><strong>Testing and inspection</strong> - Verification requirements</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-slate-800 mb-3">The Critical Overlap Zone</h4>
+                            <p class="text-slate-600 mb-4">Some information could technically go in either document, but conventions have developed over time:</p>
+                            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-400">
+                                    <strong class="text-blue-800">Typically in Drawings:</strong>
+                                    <ul class="mt-1 text-blue-700">
+                                        <li>• Door and window sizes</li>
+                                        <li>• Wall locations and heights</li>
+                                        <li>• Fixture and outlet locations</li>
+                                        <li>• Overall spatial relationships</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded border-l-4 border-green-400">
+                                    <strong class="text-green-800">Typically in Specifications:</strong>
+                                    <ul class="mt-1 text-green-700">
+                                        <li>• Material grades and finishes</li>
+                                        <li>• Installation tolerances</li>
+                                        <li>• Testing requirements</li>
+                                        <li>• Quality control procedures</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    id: 'c3',
+                    title: '3. Explain: The CSI MasterFormat Structure',
+                    content: `
+                        <div class="bg-emerald-50 border-l-4 border-emerald-500 text-emerald-800 p-4 rounded-r-lg mb-6 shadow-sm">
+                            <p class="font-semibold">To navigate specifications effectively, you need to understand their organizational structure.</p>
+                            <p class="mt-1">The Construction Specifications Institute (CSI) MasterFormat provides the standard organizing system used in North America and increasingly worldwide.</p>
+                        </div>
+
+                        <!-- Google Drive Samples Link Box -->
+                        <div class="bg-blue-50 border-l-4 border-blue-500 text-blue-800 p-6 rounded-r-lg mb-6 shadow-sm">
+                            <h3 class="font-bold text-lg text-blue-800 mb-4 flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v14l-5-3-5 3V5z" />
+                                </svg>
+                                Specification Samples & Examples
+                            </h3>
+                            <p class="text-blue-700 mb-4">Access real-world specification examples, templates, and sample documents to see how specifications are structured and written in practice.</p>
+                            <div class="bg-white p-4 rounded-lg border border-blue-200">
+                                <a href="https://drive.google.com/drive/folders/YOUR_FOLDER_ID_HERE?usp=sharing"
+                                   target="_blank"
+                                   class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all duration-200 transform hover:scale-105">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                                    </svg>
+                                    Open Specification Samples in Google Drive
+                                </a>
+                                <p class="text-sm text-blue-600 mt-2">Includes sample specs, templates, and reference documents</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200 mb-6">
+                            <h3 class="font-bold text-xl text-slate-800 mb-4">MasterFormat Divisions Overview</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div class="p-4 bg-slate-50 rounded-lg border-l-4 border-slate-400">
+                                    <div class="font-bold text-slate-800">Division 01-14</div>
+                                    <div class="text-sm text-slate-600 mt-1">General Requirements & Site Work</div>
+                                </div>
+                                <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                                    <div class="font-bold text-blue-800">Division 15-25</div>
+                                    <div class="text-sm text-blue-600 mt-1">MEP Systems</div>
+                                </div>
+                                <div class="p-4 bg-green-50 rounded-lg border-l-4 border-green-400">
+                                    <div class="font-bold text-green-800">Division 03-14</div>
+                                    <div class="text-sm text-green-600 mt-1">Concrete & Masonry</div>
+                                </div>
+                                <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-400">
+                                    <div class="font-bold text-purple-800">Division 08-14</div>
+                                    <div class="text-sm text-purple-600 mt-1">Doors, Windows & Finishes</div>
+                                </div>
+                                <div class="p-4 bg-indigo-50 rounded-lg border-l-4 border-indigo-400">
+                                    <div class="font-bold text-indigo-800">Division 26-28</div>
+                                    <div class="text-sm text-indigo-600 mt-1">Electrical & Communications</div>
+                                </div>
+                                <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-400">
+                                    <div class="font-bold text-red-800">Division 31-33</div>
+                                    <div class="text-sm text-red-600 mt-1">Earthwork & Utilities</div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    subChapters: [
+                        {
+                            id: 'c3-1',
+                            title: '3.1. The Three-Part Specification Format',
+                            content: `
+                                <p class="mb-4">Each specification section follows a standardized three-part format that organizes information logically:</p>
+                                <div class="space-y-4">
+                                    <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                                        <h4 class="font-bold text-lg text-blue-800 mb-3 flex items-center">
+                                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-mono mr-3">PART 1</span>
+                                            General
+                                        </h4>
+                                        <p class="text-slate-600 mb-3">The administrative and procedural framework:</p>
+                                        <ul class="list-disc list-inside space-y-1 text-slate-600 ml-4">
+                                            <li>Scope and applicability</li>
+                                            <li>Referenced standards and codes</li>
+                                            <li>Submittal requirements</li>
+                                            <li>Quality assurance procedures</li>
+                                            <li>Delivery and storage requirements</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                                        <h4 class="font-bold text-lg text-green-800 mb-3 flex items-center">
+                                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-mono mr-3">PART 2</span>
+                                            Products
+                                        </h4>
+                                        <p class="text-slate-600 mb-3">The specific materials and equipment requirements:</p>
+                                        <ul class="list-disc list-inside space-y-1 text-slate-600 ml-4">
+                                            <li>Manufacturer and product names</li>
+                                            <li>Material specifications and standards</li>
+                                            <li>Performance requirements</li>
+                                            <li>Product options and substitutions</li>
+                                            <li>Quality control standards</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                                        <h4 class="font-bold text-lg text-purple-800 mb-3 flex items-center">
+                                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-mono mr-3">PART 3</span>
+                                            Execution
+                                        </h4>
+                                        <p class="text-slate-600 mb-3">The installation and workmanship requirements:</p>
+                                        <ul class="list-disc list-inside space-y-1 text-slate-600 ml-4">
+                                            <li>Preparation procedures</li>
+                                            <li>Installation methods and tolerances</li>
+                                            <li>Quality control during installation</li>
+                                            <li>Testing and inspection requirements</li>
+                                            <li>Protection and cleanup procedures</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            `
+                        },
+                        {
+                            id: 'c3-2',
+                            title: '3.2. Reading Between the Lines',
+                            content: `
+                                <p class="mb-4">Specifications use specific language patterns that convey important legal and technical information:</p>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                                        <h4 class="font-bold text-green-800 mb-4">Imperative Language (Requirements)</h4>
+                                        <div class="space-y-3">
+                                            <div class="p-3 bg-green-50 rounded border-l-4 border-green-400">
+                                                <div class="font-mono text-sm text-green-800">"Provide stainless steel fasteners"</div>
+                                                <div class="text-xs text-green-600 mt-1">Contractor MUST provide these materials</div>
+                                            </div>
+                                            <div class="p-3 bg-green-50 rounded border-l-4 border-green-400">
+                                                <div class="font-mono text-sm text-green-800">"Install in accordance with manufacturer's instructions"</div>
+                                                <div class="text-xs text-green-600 mt-1">Specific installation method required</div>
+                                            </div>
+                                            <div class="p-3 bg-green-50 rounded border-l-4 border-green-400">
+                                                <div class="font-mono text-sm text-green-800">"Submit shop drawings for approval"</div>
+                                                <div class="text-xs text-green-600 mt-1">Action required before proceeding</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                                        <h4 class="font-bold text-blue-800 mb-4">Performance Language (Outcomes)</h4>
+                                        <div class="space-y-3">
+                                            <div class="p-3 bg-blue-50 rounded border-l-4 border-blue-400">
+                                                <div class="font-mono text-sm text-blue-800">"Fasteners shall withstand 500 lbs tension"</div>
+                                                <div class="text-xs text-blue-600 mt-1">Result-based requirement</div>
+                                            </div>
+                                            <div class="p-3 bg-blue-50 rounded border-l-4 border-blue-400">
+                                                <div class="font-mono text-sm text-blue-800">"Surface shall be smooth and free of defects"</div>
+                                                <div class="text-xs text-blue-600 mt-1">Quality outcome required</div>
+                                            </div>
+                                            <div class="p-3 bg-blue-50 rounded border-l-4 border-blue-400">
+                                                <div class="font-mono text-sm text-blue-800">"System shall operate continuously for 5 years"</div>
+                                                <div class="text-xs text-blue-600 mt-1">Performance warranty implied</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `
+                        }
+                    ]
+                },
+                {
+                    id: 'c4',
+                    title: '4. Elaborate: Specification Quality Analysis',
+                    content: `
+                        <div class="bg-purple-50 border-l-4 border-purple-500 text-purple-800 p-4 rounded-r-lg mb-6 shadow-sm">
+                            <p class="font-semibold">Not all specifications are created equal. Poor specifications are a leading cause of project disputes and delays.</p>
+                            <p class="mt-1">Let's analyze a real-world example and learn how to spot and fix common problems.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200 mb-6">
+                            <h3 class="font-bold text-xl text-red-800 mb-4">Problem Specification Analysis</h3>
+                            <div class="bg-red-50 border-l-4 border-red-500 text-red-800 p-4 rounded-r-lg mb-4">
+                                <h4 class="font-bold mb-2">Division 09 91 00 - Painting</h4>
+                                <p><strong>PART 2 PRODUCTS</strong></p>
+                                <p>2.1 PAINT: Use good quality latex paint.</p>
+                                <p><strong>PART 3 EXECUTION</strong></p>
+                                <p>3.1 APPLICATION: Apply paint to all interior walls.</p>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                                    <h4 class="font-bold text-red-800 mb-3">Problems Identified:</h4>
+                                    <ul class="space-y-2 text-red-700">
+                                        <li><strong>Ambiguous quality standard:</strong> "Good quality" is subjective</li>
+                                        <li><strong>No specific manufacturer:</strong> Allows any brand, potentially inconsistent results</li>
+                                        <li><strong>Missing preparation requirements:</strong> No surface prep specified</li>
+                                        <li><strong>Inadequate application details:</strong> No coverage rates or drying times</li>
+                                        <li><strong>No performance criteria:</strong> How do we measure success?</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                                    <h4 class="font-bold text-green-800 mb-3">Improved Version:</h4>
+                                    <p class="text-green-700 text-sm"><strong>PART 2 PRODUCTS</strong></p>
+                                    <p class="text-green-700 text-sm font-mono bg-green-100 p-2 rounded mb-2">
+                                        2.1 INTERIOR LATEX PAINT<br>
+                                        A. Manufacturer: Sherwin-Williams Company<br>
+                                        B. Product: ProMar 200 Zero VOC Interior Latex<br>
+                                        C. Finish: Eggshell<br>
+                                        D. VOC Content: Less than 50 grams per liter
+                                    </p>
+                                    <p class="text-green-700 text-sm"><strong>PART 3 EXECUTION</strong></p>
+                                    <p class="text-green-700 text-sm font-mono bg-green-100 p-2 rounded">
+                                        3.1 SURFACE PREPARATION<br>
+                                        A. Clean surfaces free of dirt, oil, and loose material<br>
+                                        B. Spot prime bare areas with PVA primer<br>
+                                        3.2 APPLICATION<br>
+                                        A. Apply one coat primer, two finish coats<br>
+                                        B. Coverage: 350-400 sq ft per gallon<br>
+                                        C. Dry time: 2 hours between coats, 4 hours for recoat
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                            <h4 class="font-bold text-blue-800 mb-4">Specification Writing Best Practices</h4>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <h5 class="font-semibold text-blue-700 mb-2">✅ Do Include:</h5>
+                                    <ul class="text-sm text-blue-600 space-y-1">
+                                        <li>• Specific manufacturer and model numbers</li>
+                                        <li>• Measurable performance criteria</li>
+                                        <li>• Detailed installation procedures</li>
+                                        <li>• Testing and inspection requirements</li>
+                                        <li>• Clear acceptance criteria</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-semibold text-blue-700 mb-2">❌ Avoid:</h5>
+                                    <ul class="text-sm text-blue-600 space-y-1">
+                                        <li>• Vague terms like "good quality" or "adequate"</li>
+                                        <li>• Allowing unlimited substitutions</li>
+                                        <li>• Missing technical specifications</li>
+                                        <li>• Inconsistent formatting across sections</li>
+                                        <li>• Conflicting requirements between sections</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                },
+                {
+                    id: 'c5',
+                    title: '5. Evaluate: Master Specification Challenge',
+                    content: `
+                        <div class="bg-slate-50 border-l-4 border-slate-500 text-slate-800 p-4 rounded-r-lg mb-6 shadow-sm">
+                            <p class="font-semibold">Time to apply everything you've learned. You'll be presented with scenarios requiring specification analysis and decision-making.</p>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                                <h3 class="font-bold text-xl text-slate-800 mb-4">Scenario 1: The HVAC Specification Dilemma</h3>
+                                <p class="text-slate-600 mb-4">Your contractor submits a request for substitution on the HVAC system specified in Division 23. They want to replace the specified "Trane CVHE-600" rooftop unit with a "Carrier 48TC-600" unit. The contractor claims the Carrier unit has better efficiency ratings and similar capacity.</p>
+                                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                    <p class="font-semibold text-gray-700 mb-2">Specification Section 23 81 00 - Rooftop Heating/Cooling Units</p>
+                                    <p class="text-gray-600 text-sm"><strong>PART 2 PRODUCTS</strong></p>
+                                    <p class="text-gray-600 text-sm font-mono bg-gray-200 p-2 rounded mb-2">
+                                        2.1 ROOFTOP UNIT<br>
+                                        A. Manufacturer: Trane Company<br>
+                                        B. Model: CVHE-600<br>
+                                        C. Capacity: 60,000 BTU/hr cooling, 180,000 BTU/hr heating<br>
+                                        D. Efficiency: SEER 14.0 minimum, AFUE 80% minimum
+                                    </p>
+                                    <p class="text-gray-600 text-sm"><strong>PART 3 EXECUTION</strong></p>
+                                    <p class="text-gray-600 text-sm font-mono bg-gray-200 p-2 rounded">
+                                        3.1 INSTALLATION: Install unit in accordance with manufacturer requirements and local codes.
+                                    </p>
+                                </div>
+                                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                                    <p class="font-semibold text-blue-800 mb-2">Analysis Required:</p>
+                                    <ul class="text-blue-700 space-y-1">
+                                        <li>Does the specification allow substitutions?</li>
+                                        <li>What criteria should you use to evaluate the proposed substitution?</li>
+                                        <li>What additional information would you require from the contractor?</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200">
+                                <h3 class="font-bold text-xl text-slate-800 mb-4">Scenario 2: Concrete Specification Dispute</h3>
+                                <p class="text-slate-600 mb-4">During concrete placement, you notice the contractor is using a different admixture than specified. They claim their admixture provides better workability and meets all performance requirements. The specification calls for a specific manufacturer's product.</p>
+                                <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                    <p class="font-semibold text-gray-700 mb-2">Specification Section 03 30 00 - Cast-in-Place Concrete</p>
+                                    <p class="text-gray-600 text-sm"><strong>PART 2 PRODUCTS</strong></p>
+                                    <p class="text-gray-600 text-sm font-mono bg-gray-200 p-2 rounded mb-2">
+                                        2.1 ADMIXTURE<br>
+                                        A. Manufacturer: Sika Corporation<br>
+                                        B. Product: Sikament 3000 HR<br>
+                                        C. Type: High range water reducer<br>
+                                        D. Dosage: 8-12 oz per 100 lbs cement
+                                    </p>
+                                </div>
+                                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                                    <p class="font-semibold text-red-800 mb-2">Contractor Position:</p>
+                                    <p class="text-red-700">"Our admixture is equivalent and provides better slump control. We've used it successfully on 50+ projects."</p>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400 mt-4">
+                                    <p class="font-semibold text-green-800 mb-2">Your Decision Framework:</p>
+                                    <ul class="text-green-700 space-y-1">
+                                        <li>How should you respond to this substitution attempt?</li>
+                                        <li>What documentation would you require?</li>
+                                        <li>When might you approve such a substitution?</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+            ];
+
+            const activityData = [
+                { id: 'brick-type', concept: 'The exact type and grade of brick required', description: 'Specifications document' },
+                { id: 'room-dimensions', concept: 'The dimensions and layout of each room', description: 'Drawings document' },
+                { id: 'window-location', concept: 'The exact location and size of each window', description: 'Drawings document' },
+                { id: 'mortar-mix', concept: 'The specific mortar mix proportions and additives', description: 'Specifications document' },
+                { id: 'door-schedule', concept: 'Door hardware types and manufacturers', description: 'Drawings document' },
+                { id: 'paint-finish', concept: 'Paint finish type and sheen requirements', description: 'Specifications document' },
+                { id: 'fixture-placement', concept: 'Location of electrical outlets and switches', description: 'Drawings document' },
+                { id: 'testing-requirements', concept: 'Material testing and inspection criteria', description: 'Specifications document' }
+            ];
+
+            // --- Elements ---
+            const tocContainer = document.getElementById('table-of-contents');
+            const contentContainer = document.getElementById('content-container');
+            const conceptsContainer = document.getElementById('concepts-container');
+            const descriptionsContainer = document.getElementById('descriptions-container');
+            const resetButton = document.getElementById('reset-button');
+            const feedbackMessage = document.getElementById('feedback-message');
+
+            // --- Moodle Book Logic ---
+            function renderContent() {
+                tocContainer.innerHTML = '';
+                contentContainer.innerHTML = '';
+
+                chapters.forEach(chapter => {
+                    const chapterLink = createTocLink(chapter.id, chapter.title, false);
+                    tocContainer.appendChild(chapterLink);
+
+                    const chapterCard = createContentCard(chapter.id, chapter.title, chapter.content);
+                    contentContainer.appendChild(chapterCard);
+
+                    if (chapter.subChapters) {
+                        chapter.subChapters.forEach(sub => {
+                            const subChapterLink = createTocLink(sub.id, sub.title, true);
+                            tocContainer.appendChild(subChapterLink);
+
+                            const subChapterCard = createContentCard(sub.id, sub.title, sub.content);
+                            contentContainer.appendChild(subChapterCard);
+                        });
+                    }
+                });
+
+                document.querySelector('.toc-link').classList.add('active');
+            }
+
+            function createTocLink(id, title, isSubChapter) {
+                const a = document.createElement('a');
+                a.href = `#${id}`;
+                a.dataset.targetId = id;
+                a.className = `toc-link block py-2 px-4 border-l-4 transition-colors duration-200 ${isSubChapter ? 'pl-8 text-sm' : 'font-semibold'} text-slate-600 hover:bg-slate-100 hover:text-slate-900 border-transparent`;
+                a.textContent = title;
+                a.addEventListener('click', handleTocClick);
+                return a;
+            }
+
+            function createContentCard(id, title, content) {
+                const div = document.createElement('div');
+                div.id = id;
+                div.className = 'content-card bg-white rounded-xl shadow-md p-6 md:p-8 content-fade-in';
+                let videoLink = `<a href="https://www.youtube.com/results?search_query=${encodeURIComponent(title)}" target="_blank" class="inline-block mt-4 text-primary font-semibold hover:underline">
+                        Find Related Videos →
+                    </a>`;
+                if (id === 'c5') {
+                    videoLink = '';
+                }
+                div.innerHTML = `
+                    <h2 class="text-2xl font-bold text-slate-800 mb-4">${title}</h2>
+                    <div class="prose max-w-none text-slate-600">${content}</div>
+                    ${videoLink}`;
+                return div;
+            }
+
+            function handleTocClick(e) {
+                e.preventDefault();
+                const targetId = e.target.dataset.targetId;
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    document.querySelectorAll('.toc-link').forEach(link => link.classList.remove('active'));
+                    e.target.classList.add('active');
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+            // --- Drag and Drop Logic ---
+            let draggedItem = null;
+            let correctMatches = 0;
+
+            function initializeActivity() {
+                const shuffledConcepts = [...activityData].sort(() => Math.random() - 0.5);
+                const shuffledDescriptions = [...activityData].sort(() => Math.random() - 0.5);
+
+                conceptsContainer.innerHTML = '';
+                descriptionsContainer.innerHTML = '';
+                correctMatches = 0;
+                updateFeedback('');
+
+                shuffledConcepts.forEach(item => {
+                    const conceptEl = document.createElement('div');
+                    conceptEl.id = `concept-${item.id}`;
+                    conceptEl.dataset.id = item.id;
+                    conceptEl.draggable = true;
+                    conceptEl.className = 'draggable-item bg-white p-4 rounded-lg border-2 border-slate-200 shadow-sm text-center cursor-grab transition-all duration-200';
+                    conceptEl.innerHTML = `<p class="font-semibold m-0">${item.concept}</p>`;
+                    conceptsContainer.appendChild(conceptEl);
+                });
+
+                shuffledDescriptions.forEach(item => {
+                    const descriptionEl = document.createElement('div');
+                    descriptionEl.id = `desc-${item.id}`;
+                    descriptionEl.dataset.id = item.id;
+                    descriptionEl.className = 'drop-zone bg-slate-100 p-4 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center transition-all duration-200';
+                    descriptionEl.style.minHeight = '80px';
+                    descriptionEl.innerHTML = `<p class="text-slate-500 text-center m-0">${item.description}</p>`;
+                    descriptionsContainer.appendChild(descriptionEl);
+                });
+
+                addDragDropListeners();
+            }
+
+            function addDragDropListeners() {
+                document.querySelectorAll('.draggable-item').forEach(item => {
+                    item.addEventListener('dragstart', handleDragStart);
+                    item.addEventListener('dragend', handleDragEnd);
+                });
+
+                document.querySelectorAll('.drop-zone').forEach(zone => {
+                    zone.addEventListener('dragover', handleDragOver);
+                    zone.addEventListener('dragleave', handleDragLeave);
+                    zone.addEventListener('drop', handleDrop);
+                });
+            }
+
+            function handleDragStart(e) {
+                draggedItem = e.target.closest('.draggable-item');
+                draggedItem.classList.add('cursor-grabbing', 'scale-105', 'shadow-xl', 'bg-indigo-100');
+                setTimeout(() => {
+                    if(draggedItem) draggedItem.style.opacity = '0.5';
+                }, 0);
+            }
+
+            function handleDragEnd() {
+                if (draggedItem) {
+                    draggedItem.classList.remove('cursor-grabbing', 'scale-105', 'shadow-xl', 'bg-indigo-100');
+                    draggedItem.style.opacity = '1';
+                }
+                draggedItem = null;
+            }
+
+            function handleDragOver(e) {
+                e.preventDefault();
+                const dropZone = e.target.closest('.drop-zone');
+                if (dropZone && !dropZone.classList.contains('correct')) {
+                    dropZone.classList.add('bg-indigo-100', 'border-primary');
+                }
+            }
+
+            function handleDragLeave(e) {
+                const dropZone = e.target.closest('.drop-zone');
+                if (dropZone) {
+                    dropZone.classList.remove('bg-indigo-100', 'border-primary');
+                }
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                const dropZone = e.target.closest('.drop-zone');
+                if (!dropZone || !draggedItem || dropZone.classList.contains('correct')) return;
+
+                dropZone.classList.remove('bg-indigo-100', 'border-primary');
+                const draggedId = draggedItem.dataset.id;
+                const dropZoneId = dropZone.dataset.id;
+
+                if (draggedId === dropZoneId) {
+                    handleCorrectMatch(draggedItem, dropZone);
+                } else {
+                    handleIncorrectMatch(dropZone);
+                }
+            }
+
+            function handleCorrectMatch(item, zone) {
+                zone.classList.add('correct', 'bg-emerald-50', 'border-secondary', 'border-solid');
+                zone.classList.remove('border-dashed', 'bg-slate-100');
+                zone.innerHTML = '';
+
+                const clonedItem = item.cloneNode(true);
+                clonedItem.draggable = false;
+                clonedItem.className = 'bg-emerald-100 text-emerald-800 p-3 rounded-md border-2 border-emerald-300 w-full';
+
+                const originalDescription = activityData.find(d => d.id === zone.dataset.id).description;
+                clonedItem.innerHTML += `<p class="text-sm text-emerald-600 mt-2 mb-0">${originalDescription}</p>`;
+
+                zone.appendChild(clonedItem);
+                item.classList.add('opacity-50', 'pointer-events-none');
+                correctMatches++;
+                checkCompletion();
+            }
+
+            function handleIncorrectMatch(zone) {
+                zone.classList.add('shake-animation', 'border-red-500');
+                setTimeout(() => {
+                    zone.classList.remove('shake-animation', 'border-red-500');
+                }, 500);
+            }
+
+            function checkCompletion() {
+                if (correctMatches === activityData.length) {
+                    updateFeedback('Congratulations! You\'ve successfully matched all construction document information!', 'success');
+                }
+            }
+
+            function updateFeedback(message, type = 'primary') {
+                feedbackMessage.textContent = message;
+                const colorClass = type === 'success' ? 'text-secondary' : 'text-primary';
+                feedbackMessage.className = `mt-4 text-lg font-semibold transition-opacity duration-500 opacity-0 ${colorClass}`;
+                if (message) {
+                    setTimeout(() => feedbackMessage.classList.remove('opacity-0'), 100);
+                }
+            }
+
+            // --- Initializations ---
+            renderContent();
+            resetButton.addEventListener('click', initializeActivity);
+            initializeActivity();
+        });
+    </script>
+
+</body>
+</html>
