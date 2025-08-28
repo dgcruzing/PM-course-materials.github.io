@@ -46,7 +46,7 @@ A professional, mobile-responsive, 5E-based micro-lesson that saves time and dri
 
 ## 📂 Templates & Examples
 
-See templates and final output here: **[PM Course Materials](#)**  
+See templates and final output here: **[PM Course Materials](https://dgcruzing.github.io/PM-course-materials.github.io/)**  
 
 👉 Recommended: **Sample_03 – Architectural Specifications**  
 Shows how to transform dry content into engaging HTML materials.
